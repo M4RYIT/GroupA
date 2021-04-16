@@ -478,41 +478,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4673689794286355416, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Color.a
-      value: 0.24705882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689794286355416, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689794286355417, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689794286355417, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689794286355417, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.438
-      objectReference: {fileID: 0}
     - target: {fileID: 4673689795471498514, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4673689795471498521, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: checkRadius
-      value: 0.2
+      propertyPath: FallingSpeedMultiplier
+      value: 3.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498524, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 5fb50f10c4fac3744afb1089cda035e6, type: 2}
     - target: {fileID: 4673689795471498526, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673689795471498526, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673689795471498526, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4673689795471498526, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,37 +538,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2526832996998184344, guid: 04952a0611cf82b469edc1e256d8e7f7, type: 3}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673689795471498527, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc2e27ca28151ea49a3295a84c8917a9, type: 3}
