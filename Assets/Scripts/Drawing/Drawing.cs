@@ -8,13 +8,12 @@ public class Drawing : MonoBehaviour
     [Range(0f,1f)]
     public float DistanceThreshold;
 
-    LineRenderer line;
-    EdgeCollider2D edge;
     DrawnObject drawnObj;
     Camera cam;
     Vector2 lastPos;
     List<Vector2> positions;
     DrawManager drawMgr;
+    bool invalid = false;
 
     void Start()
     {
@@ -29,11 +28,13 @@ public class Drawing : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0)) StartDrawing();
 
+            if (invalid) return;
+
             if (Input.GetMouseButton(0))
             {
                 lastPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-                if (Vector2.Distance(lastPos, positions[positions.Count - 1]) >= DistanceThreshold) SetLineEdge();
+                if (Vector2.Distance(lastPos, SpaceConversion(positions[positions.Count - 1], false)) > DistanceThreshold) SetLineEdge();
             }
 
             if (Input.GetMouseButtonUp(0)) EndDrawing();
@@ -47,29 +48,41 @@ public class Drawing : MonoBehaviour
     void EndDrawing()
     {
         drawMgr.Active = false;
+
+        if (drawnObj.Line.positionCount<2)
+        {
+            Destroy(drawnObj.gameObject);
+        }
+
         drawnObj.enabled = true;
     }
 
     void StartDrawing()
     {
-        drawMgr.Active = true;
+        Ray r = cam.ScreenPointToRay(Input.mousePosition);
+        invalid = Physics2D.Raycast(r.origin, r.direction).collider != null;
+
+        if (invalid) return;
+
+        drawMgr.Active = true;        
 
         positions.Clear();
         lastPos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        GameObject obj = Instantiate(drawMgr.DrawnObjectPrefab, lastPos, Quaternion.identity);
-        line = obj.GetComponent<LineRenderer>();
-        edge = obj.GetComponent<EdgeCollider2D>();
-        drawnObj = obj.GetComponent<DrawnObject>();
+        drawnObj = drawMgr.DrawnObject(lastPos);
 
         SetLineEdge();
     }
 
+    Vector2 SpaceConversion(Vector2 v, bool local = true)
+    {
+        return local?drawnObj.transform.InverseTransformPoint(v): drawnObj.transform.TransformPoint(v);
+    }
+
     void SetLineEdge()
     {
-        positions.Add(edge.transform.InverseTransformPoint(lastPos));
-        line.positionCount++;
-        line.SetPosition(line.positionCount - 1, lastPos);
-        edge.points = positions.ToArray();
+        positions.Add(SpaceConversion(lastPos));
+        drawnObj.Line.positionCount++;
+        drawnObj.Line.SetPosition(drawnObj.Line.positionCount - 1, SpaceConversion(lastPos));
+        drawnObj.Edge.points = positions.ToArray();
     }
 }

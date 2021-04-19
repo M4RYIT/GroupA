@@ -26,8 +26,6 @@ public class DrawManager : MonoBehaviour
     public float CurrentDrawTime => drawRefs[index].CurrentDrawTime;
     public bool Active { get => active; set => active = value; }
 
-    public GameObject DrawnObjectPrefab => drawRefs[index].DrawnObjectPrefab;
-
     void Start()
     {
         Init();
@@ -35,9 +33,17 @@ public class DrawManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(Key)) index = (index + 1) & drawRefs.Count;
+        if (Input.GetKeyDown(Key)) index = (index + 1) % drawRefs.Count;
 
         if (active) SetDrawBar(index, -Time.deltaTime);
+    }
+
+    public DrawnObject DrawnObject(Vector2 pos)
+    {
+        DrawRef drawRef = drawRefs[index];
+        DrawnObject drawnObj = Instantiate(drawRef.Asset.Prefab, pos, Quaternion.identity).GetComponent<DrawnObject>();
+        drawnObj.Init(drawRef.Asset.Color, drawRef.Asset.ObjDuration);
+        return drawnObj;
     }
 
     public void SetDrawBar(int i, float delta)
@@ -51,30 +57,27 @@ public class DrawManager : MonoBehaviour
     {
         foreach (var asset in DrawAssets)
         {
-            GameObject barObj = Instantiate(DrawnObjectPrefab, DrawBarsParent);
-
-            DrawBar bar = barObj.GetComponent<DrawBar>();
+            DrawBar bar = Instantiate(DrawBarPrefab, DrawBarsParent).GetComponent<DrawBar>();
             bar.Init(asset.Color, asset.DrawBarDuration, new Vector3(1 - 2 * (int)asset.ObjectType, 1f, 1f));
 
-            asset.Prefab.GetComponent<DrawnObject>().Init(asset.Color, asset.ObjDuration);
-
-            drawRefs[(int)asset.ObjectType] = new DrawRef(asset.Prefab, bar, asset.DrawBarDuration);
+            drawRefs[(int)asset.ObjectType] = new DrawRef(asset, bar);
         }
     }
 
     //Inner class to keep references to the parameters needed for drawing mechanics
     class DrawRef
     {
-        public readonly GameObject DrawnObjectPrefab;
+        public DrawAsset Asset;
         public readonly DrawBar DrawBar;
-        public readonly float MaxDrawTime;
         public float CurrentDrawTime;
 
-        public DrawRef(GameObject prefab, DrawBar bar, float maxtime)
+        public float MaxDrawTime => Asset.DrawBarDuration;
+
+        public DrawRef(DrawAsset asset, DrawBar bar)
         {
-            DrawnObjectPrefab = prefab;
+            Asset = asset;
             DrawBar = bar;
-            CurrentDrawTime = MaxDrawTime = maxtime;
+            CurrentDrawTime = asset.DrawBarDuration;
         }
     }
 }

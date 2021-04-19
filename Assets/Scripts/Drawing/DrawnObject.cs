@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 //Object drawn by player
@@ -5,17 +7,24 @@ using UnityEngine;
 public abstract class DrawnObject : MonoBehaviour
 {
     public float LifeTime;
+    public LineRenderer Line;
+    public EdgeCollider2D Edge;
 
-    private void OnEnable()
+    protected List<Vector2> positions = new List<Vector2>();
+
+    protected virtual void OnEnable()
     {
+        GetComponent<Rigidbody2D>().simulated = true;
+
+        Edge.GetPoints(positions);
+
         Destroy(gameObject, LifeTime);
     }
 
     //Initializes object properties
     public void Init(Color col, float life)
     {
-        LineRenderer lr = GetComponent<LineRenderer>();
-        lr.startColor = lr.endColor = col;
+        Line.startColor = Line.endColor = col;
 
         LifeTime = life;
     }
