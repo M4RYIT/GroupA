@@ -33,7 +33,7 @@ public class DrawManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(Key)) index = (index + 1) % drawRefs.Count;
+        if (Input.GetKeyDown(Key)) SwitchBar();
 
         if (active) SetDrawBar(index, -Time.deltaTime);
     }
@@ -53,6 +53,15 @@ public class DrawManager : MonoBehaviour
         drawRef.DrawBar.Set(drawRef.CurrentDrawTime);
     }
 
+    void SwitchBar()
+    {
+        drawRefs[index].DrawBar.Select(false);
+
+        index = (index + 1) % drawRefs.Count;
+
+        drawRefs[index].DrawBar.Select();
+    }
+
     void Init()
     {
         foreach (var asset in DrawAssets)
@@ -62,6 +71,8 @@ public class DrawManager : MonoBehaviour
 
             drawRefs[(int)asset.ObjectType] = new DrawRef(asset, bar);
         }
+
+        drawRefs[index].DrawBar.Select();
     }
 
     //Inner class to keep references to the parameters needed for drawing mechanics
