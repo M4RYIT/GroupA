@@ -18,6 +18,11 @@ public class DrawBar : MonoBehaviour
         BarAmountText.text = newAmount.ToString("F1");
     }
 
+    public void Select(bool enable = true)
+    {
+        barAmount.enabled = enable;
+    }
+
     //Initializes bar properties
     public void Init(Color col, float totAmount, Vector3 scale)
     {
