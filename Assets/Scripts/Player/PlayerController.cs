@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     void Respawn()
     {
         anim.SetTrigger("Hitted");
-        //ADD RESPAWN MECHANICS
+        //TO ADD RESPAWN MECHANICS OR "GO TO MAIN MENU'" SYSTEM
     }
 
 
