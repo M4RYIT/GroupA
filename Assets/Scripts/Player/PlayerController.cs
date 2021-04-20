@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //Tunable Variables
-    public float speed;
-    [SerializeField] float JumpForce;
-    [SerializeField] float FallingSpeedMultiplier = 2;
+    [SerializeField] float speed;
+    [SerializeField] float jumpForce;
+    [SerializeField] float fallingSpeedMultiplier = 2;
     [SerializeField] Transform groundCheck;
     [SerializeField] float checkRadius;
     [SerializeField] LayerMask GroundLM;
-    [SerializeField] KeyCode JumpButton;
-    public bool canMove = true;   //Cambiabile esternamente per interazione potenziale con altri script
+    [SerializeField] KeyCode jumpButton;
+    public bool dead;   //Cambiabile esternamente per interazione potenziale con altri script
 
 
     //Working Variables
@@ -20,48 +20,56 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private bool isGrounded;
+    private Vector3 respawnPoint;
 
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        respawnPoint = transform.position;
+        dead = false;
     }
 
     private void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, GroundLM);
+        
+        Jump();
 
-        if (isGrounded)
+        if (isGrounded || dead)
         {
-            Jump();
             anim.SetBool("IsJumping", false);
         }
         else
         {
             anim.SetBool("IsJumping", true);
         }
-        
+
+        //DEBUGGING
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Die();
+        }
+
     }
 
     private void FixedUpdate()
     {
-        Run();
-        FastFall();
+        if (!dead)
+        {
+            Run();
+            FastFall();
+        }
     }
 
     void Run()
     {
-        if (canMove)
-            rb.velocity = new Vector2((moveInput * speed *Time.deltaTime) * 10, rb.velocity.y);
+        rb.velocity = new Vector2((moveInput * speed *Time.deltaTime) * 10, rb.velocity.y);
 
-        if (canMove)
-        {
-            Flip();
-        }
-
-
+        Flip();
+        
         if (moveInput != 0)
         {
             anim.SetBool("IsWalking", true);
@@ -73,9 +81,9 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(JumpButton))
+        if (Input.GetKeyDown(jumpButton) && isGrounded && !dead)
         {
-            rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
     void Flip()
@@ -88,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.y < 0)
         {
-            rb.gravityScale = FallingSpeedMultiplier;
+            rb.gravityScale = fallingSpeedMultiplier;
         }
         else
         {
@@ -96,11 +104,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Respawn()
+    public void Die()
     {
-        anim.SetTrigger("Hitted");
-        //TO ADD RESPAWN MECHANICS OR "GO TO MAIN MENU'" SYSTEM
+        StartCoroutine("Respawn");
     }
 
+    IEnumerator Respawn()
+    {
+        anim.SetTrigger("Disappear");
+        rb.velocity = Vector3.zero;
+        rb.gravityScale = 0;
+        dead = true;
+        yield return new WaitForSeconds(0.45f);
+        rb.gravityScale = 1;
+        transform.position = respawnPoint;
+        anim.SetTrigger("Appear");
+        yield return new WaitForSeconds(0.45f);
+        dead = false;
+    }
 
 }
