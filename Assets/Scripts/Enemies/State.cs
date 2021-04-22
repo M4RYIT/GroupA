@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class State : StateMachineBehaviour
 {
-    public abstract void Init(Enemy enemy);
+    public abstract void Init(GameObject enemy);
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patroller : Enemy
+public class GravitySetter : Enemy
 {
-    public float Shift, Speed;    
+    public float FallMultiplier, RiseMultiplier;
 }

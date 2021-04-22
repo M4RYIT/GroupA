@@ -7,18 +7,13 @@ public abstract class Enemy : MonoBehaviour
 {
     public Animator Animator;
 
-    Vector2 startPosition;
-    Rigidbody2D rb;
-    Transform tr;
-    GameObject other;
-    Action onHit, onTrigger;
+    protected Vector2 startPosition;
+    protected Rigidbody2D rb;
+    protected Transform tr;
 
     public Vector2 StartPosition => startPosition;
     public Rigidbody2D Rb => rb;
     public Transform Tr => tr;
-    public GameObject Other => other;
-    public Action OnHit { get => onHit; set => onHit = value; }
-    public Action OnTrigger { get => onTrigger; set => onTrigger = value; }
 
     private void Awake()
     {
@@ -27,33 +22,11 @@ public abstract class Enemy : MonoBehaviour
         startPosition = rb.position;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         foreach (var smb in Animator.GetBehaviours<State>())
         {
-            smb.Init(this);
+            smb.Init(this.gameObject);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<GravityObject>() != null) return;       
-        
-        other = collision.gameObject;
-
-        onHit?.Invoke();
-
-        Animator.SetTrigger("Hit");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            other = collision.gameObject;
-
-            onTrigger?.Invoke();
-        }
-    }    
+    }        
 }

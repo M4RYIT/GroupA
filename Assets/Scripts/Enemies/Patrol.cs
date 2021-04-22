@@ -4,40 +4,45 @@ using UnityEngine;
 
 public class Patrol : State
 {
-    List<Vector3> points = new List<Vector3>();
-    Vector3 dest;
+    List<Vector2> points = new List<Vector2>();
+    Vector2 dest;
     Rigidbody2D rb;
     Transform tr;
     int index = 0;
     float shift, speed;
+    bool hit = false;
 
-    public override void Init(Enemy enemy)
+    public override void Init(GameObject enemy)
     {
-        Patroller p = enemy as Patroller;
+        Patroller p = enemy.GetComponent<Patroller>();
         rb = p.Rb;
         tr = p.Tr;
         shift = p.Shift;
         speed = p.Speed;
-        p.OnHit += () => rb.velocity = Vector2.zero;
 
-        points.Add(enemy.StartPosition);
-        points.Add(points[0] + new Vector3(shift, 0f, 0f));
+        Hitter h = enemy.GetComponent<Hitter>();
+        h.OnHit += () => { rb.velocity = Vector2.zero; hit = true; };
+
+        points.Add(p.StartPosition);
+        points.Add(points[0] + new Vector2(shift, 0f));
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        hit = false;
+
         Next();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //rb.MovePosition(rb.position + (dest - rb.position).normalized * speed * Time.fixedDeltaTime);
+        if (hit) return;
 
-        tr.Translate((dest - tr.position).normalized * Time.fixedDeltaTime * speed);
+        rb.MovePosition(rb.position + (dest - rb.position).normalized * speed * Time.fixedDeltaTime);
 
-        if (Vector2.Distance(tr.position, dest) <= 0.05f) Next();
+        if (Vector2.Distance(rb.position, dest) <= 0.05f) Next();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -47,12 +52,10 @@ public class Patrol : State
     //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
-    override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // Implement code that processes and affects root motion
+    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
 
-
-    }
+    //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
     //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -66,6 +69,6 @@ public class Patrol : State
 
         dest = points[index];
 
-        tr.localScale = new Vector3(Mathf.Sign((dest - tr.position).x), 1f, 1f);
+        tr.localScale = new Vector3(Mathf.Sign((dest - rb.position).x), 1f, 1f);
     }
 }
