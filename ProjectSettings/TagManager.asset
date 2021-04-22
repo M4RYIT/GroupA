@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraBound
+  - PoolManager
   layers:
   - Default
   - TransparentFX

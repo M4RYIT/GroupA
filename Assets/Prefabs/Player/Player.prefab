@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2526832996998184344, guid: 04952a0611cf82b469edc1e256d8e7f7, type: 3}
+  m_Sprite: {fileID: 4278371960119211202, guid: 04952a0611cf82b469edc1e256d8e7f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -229,15 +229,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  JumpForce: 7
-  FallingSpeedMultiplier: 2.5
+  jumpForce: 0
+  fallingSpeedMultiplier: 2
   groundCheck: {fileID: 4673689794286355417}
   checkRadius: 0.2
   GroundLM:
     serializedVersion: 2
     m_Bits: 64
-  JumpButton: 32
-  canMove: 1
+  jumpButton: 0
+  dead: 0
 --- !u!95 &4673689795471498520
 Animator:
   serializedVersion: 3
