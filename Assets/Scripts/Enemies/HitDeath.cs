@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitJump : State
+public class HitDeath : State
 {
+    public GameObject DeathPrefab;
+
     Hitter enemy;
     Transform tr;
 
@@ -26,13 +28,14 @@ public class HitJump : State
         {
             Vector3 v = (other.transform.position - tr.position).normalized;
 
-            if (Mathf.Abs(v.x)>Mathf.Abs(v.y))
+            if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
             {
                 //Player's death event
             }
             else
-            {
-                //Call Jump on Player
+            {                
+                //Instantiate(DeathPrefab, tr.position, Quaternion.identity);
+                //Destroy(enemy.gameObject);
             }
         }
     }
