@@ -35,8 +35,13 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, GroundLM);
+
+        //IMPUT OUT OF THE FUNCTION FOR THE "BOUNCE" ON MUSHO
+        if (Input.GetKeyDown(jumpButton) && isGrounded && !dead)
+        {
+            Jump();
+        }
         
-        Jump();
 
         if (isGrounded || dead)
         {
@@ -81,10 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKeyDown(jumpButton) && isGrounded && !dead)
-        {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-        }
+        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
     void Flip()
     {
