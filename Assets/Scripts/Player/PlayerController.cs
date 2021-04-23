@@ -46,16 +46,9 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-        
 
-        if (isGrounded || dead)
-        {
-            anim.SetBool("IsJumping", false);
-        }
-        else
-        {
-            anim.SetBool("IsJumping", true);
-        }
+        anim.SetBool("IsJumping", !(isGrounded | dead));
+        
 
         //DEBUGGING
         if (Input.GetKeyDown(KeyCode.R))

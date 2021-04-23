@@ -5,7 +5,6 @@ using UnityEngine;
 public class BulletMove : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private PoolManager pm;
     [SerializeField]
     private float speed;
     public float Speed
@@ -28,7 +27,6 @@ public class BulletMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pm = GameObject.FindGameObjectWithTag("PoolManager").GetComponent<PoolManager>();
         rb.gravityScale = 0;
     }
 
@@ -42,26 +40,26 @@ public class BulletMove : MonoBehaviour
 
         if(workingLifeTime <= 0)
         {
-            BulletEnqueue();
+            DeactivateBullet();
         }
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(dir.x * speed * Time.fixedDeltaTime, dir.y * speed * Time.fixedDeltaTime).normalized;
+        rb.velocity = dir * speed * Time.fixedDeltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
         {
-            BulletEnqueue();
+            DeactivateBullet();
         }
     }
 
-    private void BulletEnqueue()
+    private void DeactivateBullet()
     {
-        pm.ReturnObj(gameObject);
+        gameObject.SetActive(false);
         //CONSIDER TO ADD A PARTICLE FOR THE EXPLOSION
     }
 
