@@ -23,6 +23,7 @@ public class Hit : State
         if (other.CompareTag("Player"))
         {
             //Player's death event
+            GameManager.Instance.OnPlayerDeath?.Invoke();
         }
     }
 }

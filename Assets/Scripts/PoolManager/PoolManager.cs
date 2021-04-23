@@ -23,7 +23,6 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-
     public GameObject GetObj()
     {
         if(objPrefabPool.Count > 0)

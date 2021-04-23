@@ -31,6 +31,7 @@ public class HitDeath : State
             if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
             {
                 //Player's death event
+                GameManager.Instance.OnPlayerDeath?.Invoke();
             }
             else
             {                

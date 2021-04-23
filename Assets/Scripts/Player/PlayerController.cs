@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
         dead = false;
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnPlayerDeath += Die;
+    }
+
     private void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
@@ -84,7 +89,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsWalking", false);
         }
     }
-    void Jump()
+    public void Jump()
     {
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }

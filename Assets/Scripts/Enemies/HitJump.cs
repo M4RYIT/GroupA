@@ -24,15 +24,18 @@ public class HitJump : State
 
         if (other.CompareTag("Player"))
         {
+            
             Vector3 v = (other.transform.position - tr.position).normalized;
 
             if (Mathf.Abs(v.x)>Mathf.Abs(v.y))
             {
                 //Player's death event
+                GameManager.Instance.OnPlayerDeath?.Invoke();
             }
             else
             {
                 //Call Jump on Player
+                other.GetComponent<PlayerController>().Jump();
             }
         }
     }
