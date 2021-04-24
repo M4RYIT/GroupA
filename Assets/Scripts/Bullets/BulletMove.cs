@@ -62,8 +62,4 @@ public class BulletMove : MonoBehaviour
         gameObject.SetActive(false);
         //CONSIDER TO ADD A PARTICLE FOR THE EXPLOSION
     }
-
-
-
-
 }

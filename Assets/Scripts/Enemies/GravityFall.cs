@@ -9,6 +9,8 @@ public class GravityFall : State
 
     public override void Init(GameObject enemy)
     {
+        base.Init(enemy);
+
         GravitySetter gr = enemy.GetComponent<GravitySetter>();
         fallMul = gr.FallMultiplier;
         rb = gr.Rb;

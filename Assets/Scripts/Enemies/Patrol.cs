@@ -1,74 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Patrol : State
 {
-    List<Vector2> points = new List<Vector2>();
-    Vector2 dest;
+    public bool Collider = true, Rotation = false;
+
+    List<Vector2> points;
+    Vector2 destPos;
+    int index = -1, increment = 1;
     Rigidbody2D rb;
     Transform tr;
-    int index = 0;
-    float shift, speed;
-    bool hit = false;
+    float speed;
+    bool hit;
 
     public override void Init(GameObject enemy)
     {
+        base.Init(enemy);
+
         Patroller p = enemy.GetComponent<Patroller>();
+        speed = p.Speed;
         rb = p.Rb;
         tr = p.Tr;
-        shift = p.Shift;
-        speed = p.Speed;
+        index = -1; 
+        points = p.Positions; 
+        destPos = points[0];
 
-        Hitter h = enemy.GetComponent<Hitter>();
-        h.OnHit += () => { rb.velocity = Vector2.zero; hit = true; };
-
-        points.Add(p.StartPosition);
-        points.Add(points[0] + new Vector2(shift, 0f));
+        if (Collider)
+        {
+            enemy.GetComponent<Hitter>().OnHit += () => { Hit(); };
+        }
+        else
+        {
+            enemy.GetComponent<Trigger>().OnTrigger += () => { Hit(); p.Animator.SetTrigger("Hit"); };
+        }
     }
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         hit = false;
-
-        Next();
+        
+        //Next();
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (hit) return;
 
-        rb.MovePosition(rb.position + (dest - rb.position).normalized * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + (destPos - rb.position).normalized * speed * Time.fixedDeltaTime);
 
-        if (Vector2.Distance(rb.position, dest) <= 0.05f) Next();
+        if (Vector2.Distance(rb.position, destPos) <= 0.05f) Next();
     }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 
     void Next()
     {
-        index = (index + 1) % points.Count;
+        Vector3 dir = destPos;
 
-        dest = points[index];
+        index = (index + increment) % points.Count;
 
-        tr.localScale = new Vector3(Mathf.Sign((dest - rb.position).x), 1f, 1f);
+        destPos = points[Mathf.Abs(index)];
+
+        dir = (Vector3)destPos - dir;
+
+        tr.localScale = new Vector3(Mathf.Sign((destPos - rb.position).x), 1f, 1f);
+
+        if (Rotation)
+        {
+            tr.up = Vector3.Cross(dir.normalized, Vector3.forward);
+        }
+    }
+
+    void Hit()
+    {
+        increment *= -1;
+        hit = true;
     }
 }

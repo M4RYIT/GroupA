@@ -10,6 +10,8 @@ public class GravityRise : State
 
     public override void Init(GameObject enemy)
     {
+        base.Init(enemy);
+
         GravitySetter gr = enemy.GetComponent<GravitySetter>();
         riseMul = gr.RiseMultiplier;
         rb = gr.Rb;

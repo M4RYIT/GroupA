@@ -11,6 +11,8 @@ public class HitDeath : State
 
     public override void Init(GameObject enemy)
     {
+        base.Init(enemy);
+
         this.enemy = enemy.GetComponent<Hitter>();
         tr = enemy.transform;
     }

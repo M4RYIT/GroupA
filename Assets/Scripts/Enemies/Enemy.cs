@@ -15,7 +15,7 @@ public abstract class Enemy : MonoBehaviour
     public Rigidbody2D Rb => rb;
     public Transform Tr => tr;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         tr = transform;
         rb = GetComponent<Rigidbody2D>();
