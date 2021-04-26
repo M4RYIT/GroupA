@@ -7,9 +7,10 @@ public class Patrol : State
 {
     public bool Collider = true, Rotation = false;
 
+    Patroller p;
     List<Vector2> points;
     Vector2 destPos;
-    int index = 0, increment = -1;
+    int increment = -1;
     Rigidbody2D rb;
     Transform tr;
     float speed;
@@ -19,12 +20,12 @@ public class Patrol : State
     {
         base.Init(enemy);
 
-        Patroller p = enemy.GetComponent<Patroller>();
+        p = enemy.GetComponent<Patroller>();
         speed = p.Speed;
         rb = p.Rb;
         tr = p.Tr;
-        points = p.Positions; 
-        destPos = points[0];
+        points = p.Positions;
+        p.Index = 0;
 
         if (Collider)
         {
@@ -38,6 +39,8 @@ public class Patrol : State
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        destPos = points[p.Index];
+
         hit = false;
     }
 
@@ -54,9 +57,9 @@ public class Patrol : State
     {
         Vector3 dir = destPos;
 
-        index = (index + increment + points.Count) % points.Count;
+        p.Index = (p.Index + increment + points.Count) % points.Count;
 
-        destPos = points[Mathf.Abs(index)];
+        destPos = points[Mathf.Abs(p.Index)];
 
         dir = (Vector3)destPos - dir;
 

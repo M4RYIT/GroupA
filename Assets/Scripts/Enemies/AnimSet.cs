@@ -36,7 +36,6 @@ public class AnimSet : State
     
     float setTime;
     bool coRunning = false;
-    bool flip = true;
 
     public override void Init(GameObject enemy)
     {

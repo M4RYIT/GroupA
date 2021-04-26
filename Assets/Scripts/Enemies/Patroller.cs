@@ -8,4 +8,5 @@ public class Patroller : Enemy
     public float Speed;
 
     public List<Vector2> Positions => Pathfinder.GetPath();
+    public int Index { get; set; }
 }
