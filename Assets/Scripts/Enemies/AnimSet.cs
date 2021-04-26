@@ -17,23 +17,33 @@ public enum AnimEvent
 {
     OnEnter,
     OnExit,
-    OnRepeat
+    OnRepeat,
+    None
+}
+
+public enum AnimParamCond
+{ 
+    Less=-1,
+    Equal=0,
+    Greater=1
 }
 
 public class AnimSet : State
 {
+    public List<AnimParamSet> paramSets;
+
     AnimSetter animSetter;
-    List<AnimParamSet> paramSets = new List<AnimParamSet>();
+    
     float setTime;
+    bool coRunning = false;
+    bool flip = true;
 
     public override void Init(GameObject enemy)
     {
         base.Init(enemy);
 
         animSetter = enemy.GetComponent<AnimSetter>();
-        paramSets = animSetter.animParamSets;
-
-        setTime = animSetter.SetTime;
+        setTime = animSetter.SetTime;        
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -43,7 +53,7 @@ public class AnimSet : State
             SetParam(ps);
         }
 
-        animSetter.StartCoroutine(SetParamCo());
+        if(!coRunning) animSetter.StartCoroutine(SetParamCo());
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -56,12 +66,16 @@ public class AnimSet : State
 
     IEnumerator SetParamCo()
     {
+        coRunning = true;
+
         yield return new WaitForSeconds(setTime);
 
         foreach (var ps in paramSets.FindAll(p => p.AnimEvent == AnimEvent.OnRepeat))
         {
             SetParam(ps);
-        }       
+        }
+
+        coRunning = false;
     }
 
     void SetParam(AnimParamSet pSet)
@@ -79,8 +93,7 @@ public class AnimSet : State
                 break;
 
             case AnimParamMod.FloatSwitch:
-                pSet.FloatValue = (pSet.FloatValue + 1) % 2;
-                anim.SetFloat(pSet.ParamName, pSet.FloatValue);
+                anim.SetFloat(pSet.ParamName, (anim.GetFloat(pSet.ParamName)+1)%2);
                 break;
 
             case AnimParamMod.Int:
@@ -88,13 +101,11 @@ public class AnimSet : State
                 break;
 
             case AnimParamMod.IntSwitch:
-                pSet.IntValue = (pSet.IntValue + 1) % 2;
-                anim.SetInteger(pSet.ParamName, pSet.IntValue);
+                anim.SetInteger(pSet.ParamName, (anim.GetInteger(pSet.ParamName)+1)%2);
                 break;
 
             case AnimParamMod.Switch:
-                pSet.BoolValue = !pSet.BoolValue;
-                anim.SetBool(pSet.ParamName, pSet.BoolValue);
+                anim.SetBool(pSet.ParamName, !anim.GetBool(pSet.ParamName));
                 break;
 
             case AnimParamMod.Trigger:

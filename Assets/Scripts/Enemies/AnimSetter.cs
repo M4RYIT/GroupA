@@ -11,10 +11,20 @@ public class AnimParamSet
     public float FloatValue;
     public int IntValue;
     public bool BoolValue;
+
+    public int Compare(Animator anim)
+    {
+        return AnimParamMod switch
+        {
+            AnimParamMod.Bool => anim.GetBool(ParamName).CompareTo(BoolValue),
+            AnimParamMod.Float => anim.GetFloat(ParamName).CompareTo(FloatValue),
+            AnimParamMod.Int => anim.GetInteger(ParamName).CompareTo(IntValue),
+            _ => -2
+        };
+    }
 }
 
 public class AnimSetter : Enemy
 {
     public float SetTime;
-    public List<AnimParamSet> animParamSets;
 }
