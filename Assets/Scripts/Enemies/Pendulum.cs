@@ -40,6 +40,6 @@ public class Pendulum : State
     {
         if (hit) return;
 
-        rb.MoveRotation(angle * Mathf.Sin(speed * Time.fixedDeltaTime));
+        rb.MoveRotation(angle * Mathf.Sin(speed * Time.fixedTime));
     }
 }

@@ -14,14 +14,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode jumpButton;
     public bool dead;   //Cambiabile esternamente per interazione potenziale con altri script
 
-
     //Working Variables
     private float moveInput;
     private Rigidbody2D rb;
     private Animator anim;
     private bool isGrounded;
     private Vector3 respawnPoint;
-
 
     private void Awake()
     {
@@ -47,15 +45,13 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        anim.SetBool("IsJumping", !(isGrounded | dead));
-        
+        anim.SetBool("IsJumping", !(isGrounded | dead));        
 
         //DEBUGGING
         if (Input.GetKeyDown(KeyCode.R))
         {
             Die();
         }
-
     }
 
     private void FixedUpdate()
@@ -67,20 +63,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collectable c = collision.GetComponent<Collectable>();
+
+        if (c != null) c.Collect();
+    }
+
     void Run()
     {
         rb.velocity = new Vector2((moveInput * speed *Time.deltaTime) * 10, rb.velocity.y);
 
         Flip();
-        
-        if (moveInput != 0)
-        {
-            anim.SetBool("IsWalking", true);
-        }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }
+
+        anim.SetBool("IsWalking", moveInput != 0);
     }
     public void Jump()
     {
@@ -94,14 +90,7 @@ public class PlayerController : MonoBehaviour
     }
     void FastFall()
     {
-        if (rb.velocity.y < 0)
-        {
-            rb.gravityScale = fallingSpeedMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = 1;
-        }
+        rb.gravityScale = rb.velocity.y < 0 ? fallingSpeedMultiplier : 1;
     }
 
     public void Die()

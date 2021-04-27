@@ -12,7 +12,16 @@ public class Hit : State
     {
         base.Init(enemy);
 
-        Other = Collider ? enemy.GetComponent<Hitter>().Hitted : enemy.GetComponent<Trigger>().Triggered;
+        if (Collider)
+        {
+            Hitter h = enemy.GetComponent<Hitter>();
+            h.OnHit += () => { Other = h.Hitted; };
+        }
+        else
+        {
+            Trigger t = enemy.GetComponent<Trigger>();
+            t.OnTrigger += () => { Other = t.Triggered; };
+        }
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

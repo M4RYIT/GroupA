@@ -5,6 +5,7 @@ using System;
 
 public class HitParam : State
 {
+    public bool Collider;
     public AnimParamCond ParamCond;
     public AnimParamSet ParamSet;
 
@@ -14,7 +15,16 @@ public class HitParam : State
     {
         base.Init(enemy);
 
-        other = enemy.GetComponent<Hitter>().Hitted;
+        if (Collider)
+        {
+            Hitter h = enemy.GetComponent<Hitter>();
+            h.OnHit += () => { other = h.Hitted; };
+        }
+        else
+        {
+            Trigger t = enemy.GetComponent<Trigger>();
+            t.OnTrigger += () => { other = t.Triggered; };
+        }
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

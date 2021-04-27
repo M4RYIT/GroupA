@@ -34,4 +34,15 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
+    public GameObject GetObj(Vector2 pos)
+    {
+        if (objPrefabPool.Peek().activeSelf) return null;
+
+        GameObject obj = objPrefabPool.Dequeue();
+        obj.transform.position = pos;
+        obj.SetActive(true);
+
+        objPrefabPool.Enqueue(obj);
+        return obj;
+    }
 }
