@@ -112,4 +112,8 @@ public class PlayerController : MonoBehaviour
         dead = false;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnPlayerDeath -= Die;
+    }
 }

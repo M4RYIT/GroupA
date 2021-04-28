@@ -36,9 +36,10 @@ public class HitDeath : State
                 GameManager.Instance.OnPlayerDeath?.Invoke();
             }
             else
-            {                
+            {
                 //Instantiate(DeathPrefab, tr.position, Quaternion.identity);
                 //Destroy(enemy.gameObject);
+                enemy.gameObject.SetActive(false);
             }
         }
     }

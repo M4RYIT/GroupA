@@ -11,10 +11,10 @@ public class Collectable : MonoBehaviour
     public void Collect()
     {
         GameManager.Instance.OnCollect?.Invoke((int)DrawnObjectType, Amount);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         PoolManager.GetObj(transform.position);
     }

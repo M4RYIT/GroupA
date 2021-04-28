@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7935700573209217881}
   - component: {fileID: 7935700573209217880}
   - component: {fileID: 2928727591528643679}
+  - component: {fileID: 2350193072831640040}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Untagged
@@ -129,3 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &2350193072831640040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935700573209217883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b943367a0631ec47b2f187907c55749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolManager: {fileID: 0}
+  DrawnObjectType: 1
+  Amount: 0

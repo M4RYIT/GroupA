@@ -10,11 +10,10 @@ public class Shooter : MonoBehaviour
     public void Shoot()
     {
         //bullet from poolmgr
-        GameObject bullet = PoolManager.GetObj();
+        GameObject bullet = PoolManager.GetObj(BulletSpawn.position);
 
         if (bullet!=null)
         {
-            bullet.transform.position = BulletSpawn.position;
             bullet.GetComponent<BulletMove>().Dir = new Vector2(-gameObject.transform.localScale.x, 0f);
         }
     }

@@ -21,4 +21,10 @@ public class Hitter : Enemy
 
         Animator.SetTrigger("Hit");
     }
+
+    private void OnDestroy()
+    {
+        //Reset action
+        onHit = null;
+    }
 }
