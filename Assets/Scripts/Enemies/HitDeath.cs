@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class HitDeath : State
 {
-    public GameObject DeathPrefab;
-
     Hitter enemy;
     Transform tr;
 
@@ -37,9 +35,7 @@ public class HitDeath : State
             }
             else
             {
-                //Instantiate(DeathPrefab, tr.position, Quaternion.identity);
-                //Destroy(enemy.gameObject);
-                enemy.gameObject.SetActive(false);
+                enemy.Disable();
             }
         }
     }

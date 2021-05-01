@@ -40,11 +40,6 @@ public class DrawManager : MonoBehaviour
         if (active) SetDrawBar(index, -Time.deltaTime);
     }
 
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnCollect -= SetDrawBar;
-    }
-
     public DrawnObject DrawnObject(Vector2 pos)
     {
         DrawRef drawRef = drawRefs[index];

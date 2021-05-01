@@ -8,10 +8,20 @@ public class Collectable : MonoBehaviour
     public DrawnObjectType DrawnObjectType;
     public float Amount;
 
+    private void Awake()
+    {
+        GameManager.Instance.OnPlayerDeath += () => Activate(true);
+    }
+
     public void Collect()
     {
         GameManager.Instance.OnCollect?.Invoke((int)DrawnObjectType, Amount);
-        gameObject.SetActive(false);
+        Activate(false);
+    }
+
+    void Activate(bool active)
+    {
+        gameObject.SetActive(active);
     }
 
     private void OnDisable()

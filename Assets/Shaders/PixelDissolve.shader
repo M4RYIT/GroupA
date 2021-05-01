@@ -14,6 +14,7 @@ Shader "Custom/Dissolve"
         {
             Blend SrcAlpha OneMinusSrcAlpha  //ALPHA BLENDING
             BlendOp Add
+            Cull Off
 
             CGPROGRAM
             #pragma vertex vert

@@ -111,9 +111,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.45f);
         dead = false;
     }
-
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnPlayerDeath -= Die;
-    }
 }
