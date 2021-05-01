@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Patroller : Enemy
 {
-    public float Shift, Speed;    
+    public Pathfinder Pathfinder;    
+    public float Speed;
+
+    public List<Vector2> Positions => Pathfinder.GetPath();
+    public int Index { get; set; }
 }

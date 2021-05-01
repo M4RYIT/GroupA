@@ -4,5 +4,12 @@ using UnityEngine;
 
 public abstract class State : StateMachineBehaviour
 {
-    public abstract void Init(GameObject enemy);
+    protected bool init = false;
+
+    public virtual void Init(GameObject enemy)
+    {
+        if (init) return;
+
+        init = true;
+    }
 }

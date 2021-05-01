@@ -28,6 +28,8 @@ public class DrawManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.OnCollect += SetDrawBar;
+
         Init();
     }
 

@@ -25,21 +25,24 @@ public class PoolManager : MonoBehaviour
 
     public GameObject GetObj()
     {
-        if(objPrefabPool.Count > 0)
-        {
-            GameObject obj = objPrefabPool.Dequeue();
-            obj.SetActive(true);
-            return obj;
-        }
-        else
-        {
-            return null; 
-        }
+        if (objPrefabPool.Peek().activeSelf) return null;
+
+        GameObject obj = objPrefabPool.Dequeue();
+        obj.SetActive(true);
+
+        objPrefabPool.Enqueue(obj);
+        return obj;
     }
 
-    public void ReturnObj(GameObject objToEnqueue)
+    public GameObject GetObj(Vector2 pos)
     {
-        objPrefabPool.Enqueue(objToEnqueue);
-        objToEnqueue.SetActive(false);
+        if (objPrefabPool.Peek().activeSelf) return null;
+
+        GameObject obj = objPrefabPool.Dequeue();
+        obj.transform.position = pos;
+        obj.SetActive(true);
+
+        objPrefabPool.Enqueue(obj);
+        return obj;
     }
 }

@@ -22,4 +22,10 @@ public class Trigger : Enemy
             onTrigger?.Invoke();
         }
     }
+
+    private void OnDestroy()
+    {
+        //Reset action
+        onTrigger = null;
+    }
 }
