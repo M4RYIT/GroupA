@@ -7,27 +7,44 @@ public class PanelMover : MonoBehaviour
     public Vector3 EndPos;
     public float Duration;
 
-    Vector3 StartPos;
-    Vector3 Dif;
+    Vector3 startPos;
+    Vector3 dif;
+    bool reached = false;
+    bool running = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        StartPos = transform.position;
-        Dif = EndPos - StartPos;
+        startPos = transform.position;
+    }
+
+    public void Move()
+    {
+        if (!running) MoveInOut();
+    }
+
+    void MoveInOut()
+    {
+        dif = (!reached) ? EndPos - startPos : startPos - EndPos;
+
         StartCoroutine(EaseInOut());
+
+        reached = !reached;
     }
 
     IEnumerator EaseInOut()
     {
+        running = true;
+        Vector3 start = transform.position;
+        
         float f = 0;
-
         while (f<Duration)
         {
-            transform.position = EaseInOut(f, StartPos, Dif, Duration);
-            f += Time.deltaTime;
+            transform.position = EaseInOut(f, start, dif, Duration);
+            f += Time.unscaledDeltaTime;
             yield return null;
         }
+
+        running = false;
     }
 
     Vector3 EaseInOut(float t, Vector3 b, Vector3 c, float d)
