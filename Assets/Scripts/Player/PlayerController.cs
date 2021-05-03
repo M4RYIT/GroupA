@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//DA RIMUOVERE
-using UnityEngine.UI;
-
 public class PlayerController : MonoBehaviour
 {
     //Tunable Variables
@@ -26,8 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]bool isGrounded;
     private Vector3 respawnPoint;
 
-    //DA RIMUOVERE
-    public GameObject PanelMenu;
 
 
     private void Awake()
@@ -56,19 +51,6 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("IsJumping", !(isGrounded | dead));        
 
-        //DEBUGGING
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Die();
-        }
-        if (Input.GetKey(KeyCode.M))
-        {
-            PanelMenu.SetActive(true);
-        }
-        else
-        {
-            PanelMenu.SetActive(false);
-        }
 
         if(!isGrounded || dead)
         {
