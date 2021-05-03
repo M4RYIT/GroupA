@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//DA RIMUOVERE
+using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     //Tunable Variables
+    [SerializeField] GameObject runDustGO;
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [SerializeField] float fallingSpeedMultiplier = 2;
@@ -18,8 +23,12 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb;
     private Animator anim;
-    private bool isGrounded;
+    [SerializeField]bool isGrounded;
     private Vector3 respawnPoint;
+
+    //DA RIMUOVERE
+    public GameObject PanelMenu;
+
 
     private void Awake()
     {
@@ -52,6 +61,25 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+        if (Input.GetKey(KeyCode.M))
+        {
+            PanelMenu.SetActive(true);
+        }
+        else
+        {
+            PanelMenu.SetActive(false);
+        }
+
+        if(!isGrounded || dead)
+        {
+            runDustGO.SetActive(false);
+        }
+        else
+        {
+            runDustGO.SetActive(true);
+        }
+        
+        
     }
 
     private void FixedUpdate()
