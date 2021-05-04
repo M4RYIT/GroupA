@@ -27,4 +27,9 @@ public class Hitter : Enemy
         //Reset action
         onHit = null;
     }
+
+    private void OnDisable()
+    {
+        onHit = null;
+    }
 }

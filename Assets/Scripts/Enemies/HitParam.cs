@@ -34,7 +34,7 @@ public class HitParam : State
 
     void HitCheck(Animator anim)
     {
-        if (other.CompareTag("Player") && ParamCheck(anim))
+        if (other != null && other.CompareTag("Player") && ParamCheck(anim))
         {
             //Player's death event
             GameManager.Instance.OnPlayerDeath?.Invoke();

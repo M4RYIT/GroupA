@@ -173,5 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899f6567f2c4e68469508642d8aaa778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstColor: {r: 0.9928183, g: 1, b: 0.7122642, a: 1}
+  FirstColor: {r: 1, g: 1, b: 1, a: 1}
   SecondColor: {r: 1, g: 0.5518868, b: 0.5518868, a: 1}
