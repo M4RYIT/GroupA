@@ -28,7 +28,6 @@ public class LockedCameraFollow : MonoBehaviour
         if (target != null && forwardOnly)
         {
             Vector3 playerViewportPos = Camera.main.WorldToViewportPoint(target.transform.position + (Vector3)offset);
-            Debug.Log(playerViewportPos);
             if (playerViewportPos.x > 0.5)
             {
                 Follow();

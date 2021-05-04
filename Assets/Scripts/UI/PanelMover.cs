@@ -7,7 +7,7 @@ public class PanelMover : MonoBehaviour
     public Vector3 EndPos;
     public float Duration;
 
-    Vector3 startPos;
+    Vector3 startPos, endPos;
     Vector3 dif;
     bool reached = false;
     bool running = false;
@@ -15,6 +15,7 @@ public class PanelMover : MonoBehaviour
     private void Awake()
     {
         startPos = transform.position;
+        endPos = new Vector3(EndPos.x * Screen.width, EndPos.y * Screen.height, 0f);
     }
 
     public void Move()
@@ -24,7 +25,7 @@ public class PanelMover : MonoBehaviour
 
     void MoveInOut()
     {
-        dif = (!reached) ? EndPos - startPos : startPos - EndPos;
+        dif = (!reached) ? endPos - startPos : startPos - endPos;
 
         StartCoroutine(EaseInOut());
 
@@ -62,7 +63,7 @@ public class PanelMover : MonoBehaviour
         }        
 
         Vector3 diff = b - pos;
-        float perc = Mathf.Abs(diff.x / c.x);
+        float perc = Mathf.Abs((diff.x+diff.y) / (c.x+c.y));
         Vector3 next = b + c * perc; 
         return next;
     }
