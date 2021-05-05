@@ -6,7 +6,7 @@ using System;
 
 public class MenuUtility : MonoBehaviour
 {
-    public Action<float> OnLoadingScene;
+    public Func<float, bool> OnLoadingScene;
 
     public void SetTimeScale()
     {
@@ -41,10 +41,11 @@ public class MenuUtility : MonoBehaviour
     IEnumerator LoadSceneAsync(string nm="", int i=0)
     {
         AsyncOperation op = string.IsNullOrEmpty(nm) ? SceneManager.LoadSceneAsync(i) : SceneManager.LoadSceneAsync(nm);
-
+        op.allowSceneActivation = false;
         while (!op.isDone)
         {
-            OnLoadingScene?.Invoke(op.progress);
+            if ((bool)(OnLoadingScene?.Invoke(op.progress / 0.9f))) op.allowSceneActivation = true;
+
             yield return null;
         }
 

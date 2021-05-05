@@ -217,7 +217,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1534337787}
+      - m_Target: {fileID: 649025330}
         m_TargetAssemblyTypeName: PanelMover, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 1
@@ -543,6 +543,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+--- !u!114 &649025330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+  m_PrefabInstance: {fileID: 649025329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e655cde351e384a848fbff5399ccc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &874647967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1534337787}
+      - m_Target: {fileID: 649025330}
         m_TargetAssemblyTypeName: PanelMover, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 1
@@ -1115,30 +1126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe63128455d75204f81c062976712cd0, type: 3}
---- !u!1 &1534337785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4122281957865017907, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
-  m_PrefabInstance: {fileID: 649025329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1534337786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4122281957865017906, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
   m_PrefabInstance: {fileID: 649025329}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1534337787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534337785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e655cde351e384a848fbff5399ccc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EndPos: {x: 0.3, y: 0.5, z: 0}
-  Duration: 2
 --- !u!1001 &1538106647
 PrefabInstance:
   m_ObjectHideFlags: 0
