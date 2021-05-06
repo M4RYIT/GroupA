@@ -35,7 +35,14 @@ public class HitDeath : State
             }
             else
             {
-                enemy.Disable();
+                if (v.y<0)
+                {
+                    GameManager.Instance.OnPlayerDeath?.Invoke();
+                }
+                else
+                {
+                    enemy.Disable();
+                }
             }
         }
     }

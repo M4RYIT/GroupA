@@ -23,6 +23,11 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    public void SpawnObj()
+    {
+        GetObj(gameObject.transform.position);
+    }
+
     public GameObject GetObj()
     {
         if (objPrefabPool.Peek().activeSelf) return null;

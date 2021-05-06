@@ -17,15 +17,11 @@ public class Collectable : MonoBehaviour
     {
         GameManager.Instance.OnCollect?.Invoke((int)DrawnObjectType, Amount);
         Activate(false);
+        PoolManager.GetObj(transform.position);
     }
 
     void Activate(bool active)
     {
         gameObject.SetActive(active);
-    }
-
-    private void OnDisable()
-    {
-        PoolManager.GetObj(transform.position);
     }
 }

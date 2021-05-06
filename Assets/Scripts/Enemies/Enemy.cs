@@ -30,10 +30,7 @@ public abstract class Enemy : MonoBehaviour
     private void OnEnable()
     {
         rb.simulated = true;
-    }
 
-    private void Start()
-    {
         foreach (var smb in Animator.GetBehaviours<State>())
         {
             smb.Init(this.gameObject);

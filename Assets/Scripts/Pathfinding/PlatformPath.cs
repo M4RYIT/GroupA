@@ -17,6 +17,8 @@ public class PlatformPath : Pathfinder
 
     public override List<Vector2> GetPath()
     {
+        if (Positions==null||Positions.Count==0) Composite.GetPath(Index, Positions);
+
         List<Vector2> positions = new List<Vector2>();
 
         int index = Positions.IndexOf(Positions.OrderBy(pos => Vector2.Distance(pos, transform.position)).ToList()[0]);

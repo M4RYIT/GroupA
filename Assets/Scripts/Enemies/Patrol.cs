@@ -13,19 +13,19 @@ public class Patrol : State
     int increment = -1;
     Rigidbody2D rb;
     Transform tr;
-    float speed;
     bool hit;
+    MoveData data;
 
     public override void Init(GameObject enemy)
     {
         base.Init(enemy);
 
         p = enemy.GetComponent<Patroller>();
-        speed = p.Speed;
         rb = p.Rb;
         tr = p.Tr;
         points = p.Positions;
         p.Index = 0;
+        data = p.MoveData;
 
         if (Collider)
         {
@@ -48,9 +48,9 @@ public class Patrol : State
     {
         if (hit) return;
 
-        rb.MovePosition(rb.position + (destPos - rb.position).normalized * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + MoveUtility.Move((destPos - rb.position), data) * data.Speed * Time.fixedDeltaTime);
 
-        if (Vector2.Distance(rb.position, destPos) <= 0.05f) Next();
+        if (MoveUtility.Arrived(rb.position, destPos, data)) Next();
     }
 
     void Next()

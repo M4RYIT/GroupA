@@ -11,7 +11,6 @@ public class UIColorSwitch : MonoBehaviour
 
     Color[] colors;
     Image image;
-    Button b;
 
     private void Awake()
     {

@@ -53,6 +53,7 @@ public class BulletMove : MonoBehaviour
     {
         if(collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
         {
+            GameManager.Instance.OnPlayerDeath?.Invoke();
             DeactivateBullet();
         }
     }

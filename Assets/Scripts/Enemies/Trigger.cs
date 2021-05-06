@@ -28,4 +28,9 @@ public class Trigger : Enemy
         //Reset action
         onTrigger = null;
     }
+
+    private void OnDisable()
+    {
+        OnTrigger = null;
+    }
 }

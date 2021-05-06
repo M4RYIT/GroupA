@@ -29,5 +29,5 @@ Material:
     - _ShineWidth: 0.117
     - _TimeFraction: 3.5
     m_Colors:
-    - _ShineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _ShineColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
   m_BuildTextureStacks: []

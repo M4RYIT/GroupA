@@ -17,9 +17,15 @@ public class LockedCameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.OnPlayerDeath += () => { forwardOnly = false; };
         target = GameObject.FindGameObjectWithTag("Player");
         pcScript = target.GetComponent<PlayerController>();
         Follow();
+    }
+
+    private void Update()
+    {
+        if (!pcScript.dead && !forwardOnly) forwardOnly = true;
     }
 
     // Update is called once per frame
@@ -28,7 +34,6 @@ public class LockedCameraFollow : MonoBehaviour
         if (target != null && forwardOnly)
         {
             Vector3 playerViewportPos = Camera.main.WorldToViewportPoint(target.transform.position + (Vector3)offset);
-            Debug.Log(playerViewportPos);
             if (playerViewportPos.x > 0.5)
             {
                 Follow();

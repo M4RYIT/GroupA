@@ -113,7 +113,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.017204821, y: 0.043012083}
@@ -142,9 +142,9 @@ GameObject:
   - component: {fileID: 2995880204897605869}
   - component: {fileID: 2995880204897605871}
   - component: {fileID: 2995880204897605868}
-  - component: {fileID: 2995880204897605870}
   - component: {fileID: 2995880204897605866}
   - component: {fileID: 2995880204897605867}
+  - component: {fileID: 5295557621805627255}
   m_Layer: 0
   m_Name: Shy
   m_TagString: Untagged
@@ -217,6 +217,11 @@ MonoBehaviour:
   Animator: {fileID: 2995880203930213686}
   Pathfinder: {fileID: 2995880204897605869}
   Speed: 2
+  MoveData:
+    Speed: 2
+    Amplitude: 0
+    Frequency: 0
+    MoveType: 0
 --- !u!114 &2995880204897605868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,19 +236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 2995880203930213686}
   SetTime: 3
---- !u!114 &2995880204897605870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2995880204897605858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e84cbc851896541a9e91c9e6b73db5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 2995880203930213686}
 --- !u!114 &2995880204897605866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +260,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.38}
@@ -292,3 +284,16 @@ PolygonCollider2D:
       - {x: 0.37272882, y: -0.29155856}
       - {x: 0.37143102, y: -0.14935206}
       - {x: 0.32078263, y: 0.012336828}
+--- !u!114 &5295557621805627255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995880204897605858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e84cbc851896541a9e91c9e6b73db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 2995880203930213686}

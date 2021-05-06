@@ -38,9 +38,13 @@ public class HitEnableDisable : State
         yield return new WaitForSeconds(DisableAfter);
 
         anim.gameObject.SetActive(false);
+        Enemy.Rb.simulated = false;
+        Enemy.enabled = false;
 
         yield return new WaitForSeconds(EnableAfter);
 
         anim.gameObject.SetActive(true);
+        Enemy.Rb.simulated = true;
+        Enemy.enabled = true;                
     }
 }

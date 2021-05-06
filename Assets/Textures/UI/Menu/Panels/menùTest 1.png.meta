@@ -4,10 +4,10 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7624329760091819910
-    second: CanvasMenu_BG
+    second: "men\xF9Test 1_0"
   - first:
       213: -7582294074911642027
-    second: CanvasMenu_FG
+    second: "men\xF9Test 1_1"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,9 +41,9 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -100
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -121,15 +121,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CanvasMenu_BG
+      name: "men\xF9Test 1_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 550
-        width: 650
-        height: 550
+        x: 10
+        y: 559
+        width: 631
+        height: 531
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,15 +142,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CanvasMenu_FG
+      name: "men\xF9Test 1_1"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 650
-        height: 550
+        x: 97
+        y: 345
+        width: 452
+        height: 146
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
