@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] float checkRadius;
     [SerializeField] LayerMask GroundLM;
+    [SerializeField] LayerMask BottomLimitLM;
     [SerializeField] KeyCode jumpButton;
     public bool dead;   //Cambiabile esternamente per interazione potenziale con altri script
 
@@ -42,6 +43,12 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, GroundLM);
+
+        if(Physics2D.OverlapCircle(groundCheck.position, checkRadius, BottomLimitLM))
+        {
+            GameManager.Instance.OnPlayerDeath?.Invoke();
+        }
+
 
         //IMPUT OUT OF THE FUNCTION FOR THE "BOUNCE" ON MUSHO
         if (Input.GetKeyDown(jumpButton) && isGrounded && !dead)
