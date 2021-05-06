@@ -6,7 +6,7 @@ using TMPro;
 public class DrawBar : MonoBehaviour
 {
     public TextMeshProUGUI BarAmountText;
-    public GameObject BarForeground;
+    public GameObject BarForeground, BarBackground;
 
     Image barAmount;
     float barTotalAmount;
@@ -20,7 +20,7 @@ public class DrawBar : MonoBehaviour
 
     public void Select(bool enable = true)
     {
-        barAmount.enabled = enable;
+        BarBackground.SetActive(enable);
     }
 
     //Initializes bar properties

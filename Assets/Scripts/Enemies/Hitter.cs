@@ -12,12 +12,19 @@ public class Hitter : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<GravityObject>() != null) return;
+        if (collision.gameObject.GetComponent<GravityObject>() != null ||
+            collision.gameObject.GetComponent<BulletMove>() != null) return;
 
         hitted = collision.gameObject;
 
         onHit?.Invoke();
 
         Animator.SetTrigger("Hit");
+    }
+
+    private void OnDestroy()
+    {
+        //Reset action
+        onHit = null;
     }
 }

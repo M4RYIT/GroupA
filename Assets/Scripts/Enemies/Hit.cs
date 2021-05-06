@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Hit : State
 {
-    Hitter enemy;
+    public bool Collider = true;
+
+    GameObject Other;
 
     public override void Init(GameObject enemy)
     {
-        this.enemy = enemy.GetComponent<Hitter>();
+        base.Init(enemy);
+
+        if (Collider)
+        {
+            Hitter h = enemy.GetComponent<Hitter>();
+            h.OnHit += () => { Other = h.Hitted; };
+        }
+        else
+        {
+            Trigger t = enemy.GetComponent<Trigger>();
+            t.OnTrigger += () => { Other = t.Triggered; };
+        }
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -18,9 +31,7 @@ public class Hit : State
 
     void HitCheck()
     {
-        GameObject other = enemy.Hitted;
-
-        if (other.CompareTag("Player"))
+        if (Other.CompareTag("Player"))
         {
             //Player's death event
             GameManager.Instance.OnPlayerDeath?.Invoke();

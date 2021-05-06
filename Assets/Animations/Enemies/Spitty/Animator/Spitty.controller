@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec54c8459db33345bbd6be2aa655339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathPrefab: {fileID: 0}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -237,6 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcbd7f9adceaa44f9d9ccc004ba5f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paramSets:
+  - AnimEvent: 2
+    AnimParamMod: 6
+    ParamName: Shoot
+    FloatValue: 0
+    IntValue: 0
+    BoolValue: 0
 --- !u!1102 &5306050660700078946
 AnimatorState:
   serializedVersion: 6

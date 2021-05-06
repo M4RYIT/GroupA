@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    //public PoolMgr
+    public PoolManager PoolManager;
+    public Transform BulletSpawn;
 
     public void Shoot()
     {
         //bullet from poolmgr
-        Debug.Log("Shoot");
+        GameObject bullet = PoolManager.GetObj(BulletSpawn.position);
+
+        if (bullet!=null)
+        {
+            bullet.GetComponent<BulletMove>().Dir = new Vector2(-gameObject.transform.localScale.x, 0f);
+        }
     }
 }
