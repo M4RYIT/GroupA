@@ -6,6 +6,7 @@ public class HitJump : State
 {
     Hitter enemy;
     Transform tr;
+    SoundEvent s;
 
     public override void Init(GameObject enemy)
     {
@@ -13,6 +14,7 @@ public class HitJump : State
 
         this.enemy = enemy.GetComponent<Hitter>();
         tr = enemy.transform;
+        s = this.enemy.Sound;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,6 +24,8 @@ public class HitJump : State
 
     void HitCheck()
     {
+        s.PlayOneShot("Hit");
+
         GameObject other = enemy.Hitted;
 
         if (other.CompareTag("Player"))

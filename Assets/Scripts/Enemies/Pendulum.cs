@@ -7,8 +7,8 @@ public class Pendulum : State
     public bool Collider = true;
 
     float speed, angle;
-    Transform tr;
     Rigidbody2D rb;
+    SoundEvent s;
     bool hit;
 
     public override void Init(GameObject enemy)
@@ -18,8 +18,8 @@ public class Pendulum : State
         Mover m = enemy.GetComponent<Mover>();
         speed = m.LinearSpeed;
         angle = m.Angle;
-        tr = m.Tr;
         rb = m.Rb;
+        s = m.Sound;
 
         if (Collider)
         {
@@ -27,7 +27,7 @@ public class Pendulum : State
         }
         else
         {
-            enemy.GetComponent<Trigger>().OnTrigger += () => { hit = true; m.Animator.SetTrigger("Hit"); };
+            enemy.GetComponent<Trigger>().OnTrigger += () => { s.PlayOneShot("Hit"); hit = true; m.Animator.SetTrigger("Hit"); };
         }
     }
 

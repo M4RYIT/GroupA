@@ -9,6 +9,7 @@ public class HitEnableDisable : State
     
     GameObject Other;
     Enemy Enemy;
+    SoundEvent s;
 
     public override void Init(GameObject enemy)
     {
@@ -26,6 +27,13 @@ public class HitEnableDisable : State
             t.OnTrigger += () => { Other = t.Triggered;  t.Animator.SetTrigger("Hit"); };
             Enemy = t;
         }
+
+        s = Enemy.Sound;
+    }
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        s.PlayOneShot("Hit");
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -37,14 +45,18 @@ public class HitEnableDisable : State
     {
         yield return new WaitForSeconds(DisableAfter);
 
+        s.Stop();
+        s.PlayOneShot("Disappear");
         anim.gameObject.SetActive(false);
         Enemy.Rb.simulated = false;
         Enemy.enabled = false;
 
         yield return new WaitForSeconds(EnableAfter);
 
+        s.PlayOneShot("Appear");
         anim.gameObject.SetActive(true);
         Enemy.Rb.simulated = true;
-        Enemy.enabled = true;                
+        Enemy.enabled = true;
+        s.Play();
     }
 }

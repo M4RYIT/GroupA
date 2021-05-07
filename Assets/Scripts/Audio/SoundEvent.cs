@@ -28,8 +28,23 @@ public class SoundEvent : MonoBehaviour
     public void Play(string name)
     {
         sd = Sounds.Find(s => s.Name == name);
-        Source.clip = sd.Clip;
+        if (sd.Clip != Source.clip) Source.clip = sd.Clip;
         Source.volume = sd.Volume;
+        Source.Play();        
+    }
+
+    public void Play()
+    {
         Source.Play();
+    }
+
+    public void Pause()
+    {
+        Source.Pause();
+    }
+
+    public void Stop()
+    {
+        Source.Stop();
     }
 }

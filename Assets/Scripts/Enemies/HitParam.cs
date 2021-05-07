@@ -10,6 +10,7 @@ public class HitParam : State
     public AnimParamSet ParamSet;
 
     GameObject other;
+    SoundEvent s;
 
     public override void Init(GameObject enemy)
     {
@@ -19,11 +20,13 @@ public class HitParam : State
         {
             Hitter h = enemy.GetComponent<Hitter>();
             h.OnHit += () => { other = h.Hitted; };
+            s = h.Sound;
         }
         else
         {
             Trigger t = enemy.GetComponent<Trigger>();
             t.OnTrigger += () => { other = t.Triggered; };
+            s = t.Sound;
         }
     }
 
@@ -34,6 +37,8 @@ public class HitParam : State
 
     void HitCheck(Animator anim)
     {
+        s.PlayOneShot("Hit");
+
         if (other != null && other.CompareTag("Player") && ParamCheck(anim))
         {
             //Player's death event

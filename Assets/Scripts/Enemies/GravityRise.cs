@@ -30,7 +30,7 @@ public class GravityRise : State
     {
         if (animator.GetBool("PosReached")) return;
 
-        if (Vector2.Distance(rb.position, start) <= 0.05f) Stop(animator);
+        if (Vector2.Distance(rb.position, start) <= 0.05f || (start-rb.position).y<0) Stop(animator);
     }
 
     void Stop(Animator anim)

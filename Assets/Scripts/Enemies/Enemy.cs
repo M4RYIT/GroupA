@@ -10,10 +10,12 @@ public abstract class Enemy : MonoBehaviour
     protected Vector2 startPosition;
     protected Rigidbody2D rb;
     protected Transform tr;
+    protected SoundEvent sound;
 
     public Vector2 StartPosition => startPosition;
     public Rigidbody2D Rb => rb;
     public Transform Tr => tr;
+    public SoundEvent Sound => sound;
 
     Material mat;
 
@@ -22,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
         mat = GetComponentInChildren<Renderer>().material;
         tr = transform;
         rb = GetComponent<Rigidbody2D>();
+        sound = GetComponent<SoundEvent>();
         startPosition = rb.position;
 
         GameManager.Instance.OnPlayerDeath += () => gameObject.SetActive(true);
@@ -44,6 +47,7 @@ public abstract class Enemy : MonoBehaviour
 
     IEnumerator CoDisable()
     {
+        sound.PlayOneShot("Death");
         rb.simulated = false;
         float dissolve = mat.GetFloat("_Dissolve");
 

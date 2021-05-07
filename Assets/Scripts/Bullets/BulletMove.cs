@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
+    private SoundEvent sound;
     private Rigidbody2D rb;
     [SerializeField]
     private float speed;
@@ -28,6 +29,7 @@ public class BulletMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+        sound = GetComponent<SoundEvent>();
     }
 
     private void OnEnable()
@@ -51,6 +53,8 @@ public class BulletMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        sound.PlayOneShot("Hit");
+
         if(collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
         {
             GameManager.Instance.OnPlayerDeath?.Invoke();

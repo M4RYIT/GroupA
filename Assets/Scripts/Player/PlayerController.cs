@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     [SerializeField]bool isGrounded;
     private Vector3 respawnPoint;
-
+    SoundEvent sound;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sound = GetComponent<SoundEvent>();
         respawnPoint = transform.position;
         dead = false;
     }
@@ -84,7 +85,11 @@ public class PlayerController : MonoBehaviour
     {
         Collectable c = collision.GetComponent<Collectable>();
 
-        if (c != null) c.Collect();
+        if (c != null)
+        {
+            c.Collect();
+            sound.PlayOneShot("Collect");
+        }
     }
 
     void Run()
@@ -97,6 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
+        sound.PlayOneShot("Jump");
         rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
     void Flip()
@@ -117,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        sound.PlayOneShot("Hit");
+        sound.PlayOneShot("Defeat");
         anim.SetTrigger("Disappear");
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0;

@@ -10,12 +10,12 @@ public class Collectable : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.OnPlayerDeath += () => Activate(true);
+        GameManager.Instance.OnPlayerDeath += () => Activate(true);        
     }
 
     public void Collect()
     {
-        GameManager.Instance.OnCollect?.Invoke((int)DrawnObjectType, Amount);
+        GameManager.Instance.OnCollect?.Invoke((int)DrawnObjectType, Amount);        
         Activate(false);
         PoolManager.GetObj(transform.position);
     }

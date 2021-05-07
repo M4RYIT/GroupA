@@ -7,6 +7,7 @@ public class Hit : State
     public bool Collider = true;
 
     GameObject Other;
+    SoundEvent s;
 
     public override void Init(GameObject enemy)
     {
@@ -16,11 +17,13 @@ public class Hit : State
         {
             Hitter h = enemy.GetComponent<Hitter>();
             h.OnHit += () => { Other = h.Hitted; };
+            s = h.Sound;
         }
         else
         {
             Trigger t = enemy.GetComponent<Trigger>();
             t.OnTrigger += () => { Other = t.Triggered; };
+            s = t.Sound;
         }
     }
 
@@ -31,6 +34,8 @@ public class Hit : State
 
     void HitCheck()
     {
+        s.PlayOneShot("Hit");
+
         if (Other.CompareTag("Player"))
         {
             //Player's death event
