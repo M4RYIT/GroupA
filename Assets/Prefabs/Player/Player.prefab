@@ -393,7 +393,7 @@ MonoBehaviour:
     Volume: 1
   - Name: Jump
     Clip: {fileID: 8300000, guid: 6889285a723054e44aa84b86e8ccb92d, type: 3}
-    Volume: 0.7
+    Volume: 1
   - Name: Hit
     Clip: {fileID: 8300000, guid: cc6a53bc9b11b64419b301d2e2065482, type: 3}
     Volume: 1

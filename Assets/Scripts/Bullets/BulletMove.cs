@@ -51,12 +51,11 @@ public class BulletMove : MonoBehaviour
         rb.velocity = dir * speed * Time.fixedDeltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        sound.PlayOneShot("Hit");
-
-        if(collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
+        if (collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
         {
+            sound.PlayOneShot("Hit");
             GameManager.Instance.OnPlayerDeath?.Invoke();
             DeactivateBullet();
         }

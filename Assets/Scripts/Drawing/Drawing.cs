@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 //Performs drawing mechanics
 public class Drawing : MonoBehaviour
 {
+    public EventSystem EventSystem;
+    public GraphicRaycaster Raycaster;
     [Range(0f,1f)]
     public float DistanceThreshold;
 
@@ -14,6 +18,7 @@ public class Drawing : MonoBehaviour
     List<Vector2> positions;
     DrawManager drawMgr;
     bool invalid = false;
+    List<RaycastResult> results;
 
     void Start()
     {
@@ -59,8 +64,11 @@ public class Drawing : MonoBehaviour
 
     void StartDrawing()
     {
+        results = new List<RaycastResult>();
         Ray r = cam.ScreenPointToRay(Input.mousePosition);
-        invalid = Physics2D.Raycast(r.origin, r.direction).collider != null;
+        Raycaster.Raycast(new PointerEventData(EventSystem) { position = Input.mousePosition }, results);
+
+        invalid = Physics2D.Raycast(r.origin, r.direction).collider != null | results.Count > 0;                  
 
         if (invalid) return;
 

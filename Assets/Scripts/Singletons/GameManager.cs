@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        SceneManager.activeSceneChanged += (Scene current, Scene next) => { OnChangeScene(); };
+        SceneManager.activeSceneChanged += (Scene current, Scene next) => { GetComponent<AudioSource>().volume = Mathf.Lerp(0.6f, 0.2f, next.buildIndex); OnChangeScene(); };
     }
 
     public void OnChangeScene()
