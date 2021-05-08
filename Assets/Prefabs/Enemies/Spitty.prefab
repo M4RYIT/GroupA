@@ -218,8 +218,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0.1
-  MinDistance: 2
-  MaxDistance: 3
+  MinDistance: 1
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -310,13 +310,13 @@ MonoBehaviour:
   Sounds:
   - Name: Shoot
     Clip: {fileID: 8300000, guid: af10e715b8669d04bbd1a11057f7b699, type: 3}
-    Volume: 0.8
+    Volume: 0.7
   - Name: Death
     Clip: {fileID: 8300000, guid: 279d98b0ab07b3b4f8786614df380e5f, type: 3}
-    Volume: 0.8
+    Volume: 1
   - Name: Hit
     Clip: {fileID: 8300000, guid: f858370d943a26a44a2d4aa1e672f94c, type: 3}
-    Volume: 0.8
+    Volume: 1
 --- !u!1 &8567976159257995726
 GameObject:
   m_ObjectHideFlags: 0

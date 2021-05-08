@@ -258,7 +258,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -314,4 +314,4 @@ MonoBehaviour:
   Sounds:
   - Name: Hit
     Clip: {fileID: 8300000, guid: f858370d943a26a44a2d4aa1e672f94c, type: 3}
-    Volume: 1
+    Volume: 0.9

@@ -34,6 +34,7 @@ public class BulletMove : MonoBehaviour
 
     private void OnEnable()
     {
+        CancelInvoke();
         workingLifeTime = lifeTime;
     }
     private void Update()
@@ -53,16 +54,20 @@ public class BulletMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6 || collision.gameObject.tag == "Player") //LAYER & = GROUND
+        bool p = collision.gameObject.tag == "Player";
+
+        if (collision.gameObject.layer == 6 || p) //LAYER & = GROUND
         {
             sound.PlayOneShot("Hit");
-            GameManager.Instance.OnPlayerDeath?.Invoke();
-            DeactivateBullet();
+
+            if (p) GameManager.Instance.OnPlayerDeath?.Invoke();
+
+            Invoke(nameof(DeactivateBullet), 0.1f);
         }
     }
 
     private void DeactivateBullet()
-    {
+    {       
         gameObject.SetActive(false);
         //CONSIDER TO ADD A PARTICLE FOR THE EXPLOSION
     }

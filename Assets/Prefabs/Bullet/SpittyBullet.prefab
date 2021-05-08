@@ -250,5 +250,5 @@ MonoBehaviour:
   Source: {fileID: -8038145765262312501}
   Sounds:
   - Name: Hit
-    Clip: {fileID: 8300000, guid: f858370d943a26a44a2d4aa1e672f94c, type: 3}
+    Clip: {fileID: 8300000, guid: fd7dacd97d62a514b80bc773d71699da, type: 3}
     Volume: 0.8

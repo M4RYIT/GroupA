@@ -19,8 +19,7 @@ public class SoundEvent : MonoBehaviour
     SoundData sd;
 
     public void PlayOneShot(string name)
-    {
-        Source.volume = 1f;        
+    {              
         sd = Sounds.Find(s => s.Name == name);
         Source.PlayOneShot(sd.Clip, sd.Volume);
     }
@@ -35,16 +34,25 @@ public class SoundEvent : MonoBehaviour
 
     public void Play()
     {
-        Source.Play();
+        foreach (var source in GetComponents<AudioSource>())
+        {
+            source.Play();
+        }
     }
 
     public void Pause()
     {
-        Source.Pause();
+        foreach (var source in GetComponents<AudioSource>())
+        {
+            source.Play();
+        }
     }
 
     public void Stop()
     {
-        Source.Stop();
+        foreach (var source in GetComponents<AudioSource>())
+        {
+            source.Stop();
+        }        
     }
 }
