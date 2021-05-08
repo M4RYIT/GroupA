@@ -219,7 +219,7 @@ MonoBehaviour:
   Animator: {fileID: 2995880203930213686}
   Pathfinder: {fileID: 2995880204897605869}
   MoveData:
-    Speed: 2
+    Speed: 1.5
     Amplitude: 0
     Frequency: 0
     MoveType: 0

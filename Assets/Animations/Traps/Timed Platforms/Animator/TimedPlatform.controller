@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Collider: 0
-  DisableAfter: 2
-  EnableAfter: 3
+  DisableAfter: 0.7
+  EnableAfter: 2
 --- !u!1102 &-411420588884303665
 AnimatorState:
   serializedVersion: 6

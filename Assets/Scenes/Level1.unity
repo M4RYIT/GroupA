@@ -5425,6 +5425,10 @@ PrefabInstance:
       propertyPath: Composite
       value: 
       objectReference: {fileID: 1586020373}
+    - target: {fileID: 2479669102272002938, guid: 7b95816ce890d0b4db773af39f8fd83e, type: 3}
+      propertyPath: MoveData.Speed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2479669102272002939, guid: 7b95816ce890d0b4db773af39f8fd83e, type: 3}
       propertyPath: m_RootOrder
       value: 39
