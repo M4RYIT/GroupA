@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HitJump : State
 {
+    public float JumpMultiplier;
+
     Hitter enemy;
     Transform tr;
     SoundEvent s;
@@ -41,7 +43,7 @@ public class HitJump : State
             else
             {
                 //Call Jump on Player
-                other.GetComponent<PlayerController>().Jump();
+                other.GetComponent<PlayerController>().Jump(JumpMultiplier);
             }
         }
     }

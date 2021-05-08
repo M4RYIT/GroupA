@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("IsWalking", moveInput != 0);
     }
-    public void Jump()
+    public void Jump(float jumpMultiplier = 1f)
     {
         sound.PlayOneShot("Jump");
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0, jumpForce*jumpMultiplier), ForceMode2D.Impulse);
     }
     void Flip()
     {

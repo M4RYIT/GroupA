@@ -10,6 +10,7 @@ public class HitEnableDisable : State
     GameObject Other;
     Enemy Enemy;
     SoundEvent s;
+    Transform tr;
 
     public override void Init(GameObject enemy)
     {
@@ -29,6 +30,7 @@ public class HitEnableDisable : State
         }
 
         s = Enemy.Sound;
+        tr = Enemy.Tr;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -38,7 +40,24 @@ public class HitEnableDisable : State
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Other.CompareTag("Player")) Enemy.StartCoroutine(EnableDisable(animator));
+        HitCheck(animator);
+    }
+
+    void HitCheck(Animator anim)
+    {
+        if (Other.CompareTag("Player"))
+        {
+            Vector3 v = (Other.transform.position - tr.position).normalized;
+
+            Debug.Log(v);
+
+            if (Mathf.Abs(v.y) >= Mathf.Abs(v.x)-0.25f && v.y>0)
+            {
+                Debug.Log("Hit");
+
+                Enemy.StartCoroutine(EnableDisable(anim));
+            }
+        }
     }
 
     public IEnumerator EnableDisable(Animator anim)

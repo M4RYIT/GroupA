@@ -20,9 +20,6 @@ public class GravityRise : State
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool("Fall", false);
-        animator.SetBool("PosReached", false);
-
         Rise();
     }
 
@@ -35,9 +32,6 @@ public class GravityRise : State
 
     void Stop(Animator anim)
     {
-        rb.velocity = Vector2.zero;
-        rb.gravityScale = 0f;
-
         anim.SetBool("PosReached", true);
     }
 

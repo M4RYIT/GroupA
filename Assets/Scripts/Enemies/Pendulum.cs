@@ -16,7 +16,7 @@ public class Pendulum : State
         base.Init(enemy);
 
         Mover m = enemy.GetComponent<Mover>();
-        speed = m.LinearSpeed;
+        speed = m.AngularSpeed;
         angle = m.Angle;
         rb = m.Rb;
         s = m.Sound;
@@ -40,6 +40,9 @@ public class Pendulum : State
     {
         if (hit) return;
 
-        rb.MoveRotation(angle * Mathf.Sin(speed * Time.fixedTime));
+        //Pendulum Movement
+        //rb.MoveRotation(angle * Mathf.Sin(speed * Time.fixedTime));
+
+        rb.MoveRotation(rb.rotation + speed * Time.fixedDeltaTime);
     }
 }

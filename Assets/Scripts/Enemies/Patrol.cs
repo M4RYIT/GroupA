@@ -13,7 +13,7 @@ public class Patrol : State
     int increment = -1;
     Rigidbody2D rb;
     Transform tr;
-    bool hit;
+    bool hit = false;
     MoveData data;
 
     public override void Init(GameObject enemy)
@@ -41,7 +41,11 @@ public class Patrol : State
     {
         destPos = points[p.Index];
 
-        hit = false;
+        if (hit)
+        {
+            Next();
+            hit = false;
+        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
