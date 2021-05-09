@@ -9,21 +9,19 @@ public class Hit : State
     GameObject Other;
     SoundEvent s;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
+        s = enemy.Sound;
 
         if (Collider)
         {
-            Hitter h = enemy.GetComponent<Hitter>();
-            h.OnHit += () => { Other = h.Hitted; };
-            s = h.Sound;
+            Hitter h = enemy as Hitter;
+            if (h!=null) h.OnHit += () => { Other = h.Hitted; };
         }
         else
         {
-            Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { Other = t.Triggered; t.Entered = false; };
-            s = t.Sound;
+            Trigger t = enemy as Trigger;
+            if (t!=null) t.OnTrigger += () => { Other = t.Triggered; t.Entered = false; };
         }
     }
 

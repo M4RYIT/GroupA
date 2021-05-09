@@ -6,30 +6,28 @@ public class Pendulum : State
 {
     public bool Collider = true;
 
-    float speed, angle;
+    float speed;
     Rigidbody2D rb;
-    SoundEvent s;
     bool hit;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
+        Mover m = enemy as Mover;
 
-        Mover m = enemy.GetComponent<Mover>();
-        speed = m.AngularSpeed;
-        angle = m.Angle;
-        rb = m.Rb;
-        s = m.Sound;
+        if (m!=null) speed = m.AngularSpeed;        
 
         if (Collider)
         {
-            enemy.GetComponent<Hitter>().OnHit += () => { hit=true; };
+            Hitter h = enemy as Hitter;
+            if (h!=null) h.OnHit += () => { hit=true; };
         }
         else
         {
-            Trigger trg = enemy.GetComponent<Trigger>();
-            trg.OnTrigger += () => { s.PlayOneShot("Hit"); hit = true; m.Animator.SetTrigger("Hit"); trg.Entered = false; };
+            Trigger trg = enemy as Trigger;
+            if (trg!=null) trg.OnTrigger += () => { trg.Sound.PlayOneShot("Hit"); hit = true; trg.Animator.SetTrigger("Hit"); trg.Entered = false; };
         }
+
+        rb = enemy.Rb;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

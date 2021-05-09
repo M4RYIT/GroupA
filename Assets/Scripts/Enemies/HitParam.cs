@@ -12,22 +12,20 @@ public class HitParam : State
     GameObject other;
     SoundEvent s;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
-
         if (Collider)
         {
-            Hitter h = enemy.GetComponent<Hitter>();
-            h.OnHit += () => { other = h.Hitted; };
-            s = h.Sound;
+            Hitter h = enemy as Hitter;
+            if (h!=null) h.OnHit += () => { other = h.Hitted; };
         }
         else
         {
-            Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { other = t.Triggered; t.Entered = false; };
-            s = t.Sound;
+            Trigger t = enemy as Trigger;
+            if (t!=null) t.OnTrigger += () => { other = t.Triggered; t.Entered = false; };
         }
+
+        s = enemy.Sound;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -8,21 +8,21 @@ public class GravityFall : State
     float fallMul;
     Trigger trg;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        if (init) return;
+        rb = enemy.Rb;
 
-        init = true;
+        GravitySetter gr = enemy as GravitySetter;
+        if (gr!=null) fallMul = gr.FallMultiplier;
 
-        GravitySetter gr = enemy.GetComponent<GravitySetter>();
-        fallMul = gr.FallMultiplier;
-        rb = gr.Rb;
+        if (enemy is Trigger)
+        {
+            trg = enemy as Trigger;
+            trg.OnTrigger += () => { Fall(trg.Animator); };
+        }
 
-        trg = enemy.GetComponent<Trigger>();
-        trg.OnTrigger += () => { Fall(trg.Animator); };
-
-        Hitter h = enemy.GetComponent<Hitter>();
-        h.OnHit += () => { h.Animator.SetBool("PosReached", false); rb.gravityScale = 0f; };
+        Hitter h = enemy as Hitter;
+        if (h!=null) h.OnHit += () => { h.Animator.SetBool("PosReached", false); rb.gravityScale = 0f; };
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

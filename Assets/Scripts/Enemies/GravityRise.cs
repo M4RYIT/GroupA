@@ -8,14 +8,13 @@ public class GravityRise : State
     float riseMul;
     Vector2 start;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
+        rb = enemy.Rb;
+        start = enemy.StartPosition;
 
-        GravitySetter gr = enemy.GetComponent<GravitySetter>();
-        riseMul = gr.RiseMultiplier;
-        rb = gr.Rb;
-        start = gr.StartPosition;
+        GravitySetter gr = enemy as GravitySetter;
+        if (gr != null) riseMul = gr.RiseMultiplier;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

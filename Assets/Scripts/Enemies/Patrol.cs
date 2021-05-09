@@ -13,49 +13,55 @@ public class Patrol : State
     int increment = -1;
     Rigidbody2D rb;
     Transform tr;
-    bool hit = false;
     MoveData data;
 
-    public override void Init(GameObject enemy)
-    {
-        base.Init(enemy);
-
-        p = enemy.GetComponent<Patroller>();
-        rb = p.Rb;
-        tr = p.Tr;
-        points = p.Positions;
-        p.Index = 0;
-        data = p.MoveData;
+    public override void Init(Enemy enemy)
+    {       
+        if (enemy is Patroller)
+        {
+            p = enemy as Patroller;
+            points = p.Positions;
+            p.Index = 0;
+            data = p.MoveData;
+            p.Hit = false;
+        }       
 
         if (Collider)
         {
-            enemy.GetComponent<Hitter>().OnHit += () => { Hit(); };
+            Hitter h = enemy as Hitter;
+            if (h!=null) h.OnHit += () => { Hit(); };
         }
         else
         {
-            Trigger trg = enemy.GetComponent<Trigger>();
-            trg.OnTrigger += () => { Hit(); p.Animator.SetTrigger("Hit"); trg.Entered = false; };
+            Trigger trg = enemy as Trigger;
+            if (trg!=null) trg.OnTrigger += () => { Hit(); trg.Animator.SetTrigger("Hit"); trg.Entered = false; };
         }
+
+        rb = enemy.Rb;
+        tr = enemy.Tr;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         destPos = points[p.Index];
 
-        if (hit)
+        if (p.Hit)
         {
             Next();
-            hit = false;
+            p.Hit = false;
         }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (hit) return;
+        if (p.Hit) return;
 
         rb.MovePosition(rb.position + MoveUtility.Move((destPos - rb.position), data) * data.Speed * Time.fixedDeltaTime);
 
-        if (MoveUtility.Arrived(rb.position, destPos, data)) Next();
+        if (MoveUtility.Arrived(rb.position, destPos, data))
+        {
+            Next();
+        }
     }
 
     void Next()
@@ -79,6 +85,6 @@ public class Patrol : State
     void Hit()
     {
         increment *= -1;
-        hit = true;
+        p.Hit = true;
     }
 }

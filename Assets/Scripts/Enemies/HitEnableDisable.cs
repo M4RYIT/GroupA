@@ -12,23 +12,20 @@ public class HitEnableDisable : State
     SoundEvent s;
     Transform tr;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
-
         if (Collider)
         {
-            Hitter h = enemy.GetComponent<Hitter>();
-            h.OnHit += () => { Other = h.Hitted; };
-            Enemy = h;
+            Hitter h = enemy as Hitter;
+            if (h != null) h.OnHit += () => { Other = h.Hitted; };
         }
         else
         {
-            Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { Other = t.Triggered;  t.Animator.SetTrigger("Hit"); t.Entered = false; };
-            Enemy = t;
+            Trigger t = enemy as Trigger;
+            if (t!=null) t.OnTrigger += () => { Other = t.Triggered;  t.Animator.SetTrigger("Hit"); t.Entered = false; };
         }
 
+        Enemy = enemy;
         s = Enemy.Sound;
         tr = Enemy.Tr;
     }
@@ -49,12 +46,8 @@ public class HitEnableDisable : State
         {
             Vector3 v = (Other.transform.position - tr.position).normalized;
 
-            Debug.Log(v);
-
             if (Mathf.Abs(v.y) >= Mathf.Abs(v.x)-0.25f && v.y>0)
             {
-                Debug.Log("Hit");
-
                 Enemy.StartCoroutine(EnableDisable(anim));
             }
         }

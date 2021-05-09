@@ -9,6 +9,7 @@ public class Patroller : Enemy
 
     public List<Vector2> Positions => Pathfinder.GetPath();
     public int Index { get; set; }
+    public bool Hit { get; set; }
 }
 
 [System.Serializable]

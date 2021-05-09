@@ -37,12 +37,13 @@ public class AnimSet : State
     float setTime;
     bool coRunning = false;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
-
-        animSetter = enemy.GetComponent<AnimSetter>();
-        setTime = animSetter.SetTime;        
+        if (enemy is AnimSetter)
+        {
+            animSetter = enemy as AnimSetter;
+            setTime = animSetter.SetTime;
+        }    
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

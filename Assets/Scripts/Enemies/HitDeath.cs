@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class HitDeath : State
 {
-    Hitter enemy;
+    Hitter h;
     Transform tr;
     SoundEvent s;
 
-    public override void Init(GameObject enemy)
-    {
-        base.Init(enemy);
-
-        this.enemy = enemy.GetComponent<Hitter>();
+    public override void Init(Enemy enemy)
+    {        
         tr = enemy.transform;
-        s = this.enemy.Sound;
+        s = enemy.Sound;
+        if (enemy is Hitter) h = enemy as Hitter;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,7 +24,7 @@ public class HitDeath : State
     {
         s.PlayOneShot("Hit");
 
-        GameObject other = enemy.Hitted;
+        GameObject other = h.Hitted;
 
         if (other.CompareTag("Player"))
         {
@@ -45,7 +43,7 @@ public class HitDeath : State
                 }
                 else
                 {
-                    enemy.Disable();
+                    h.Disable();
                 }
             }
         }

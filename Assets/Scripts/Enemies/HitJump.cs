@@ -6,17 +6,15 @@ public class HitJump : State
 {
     public float JumpMultiplier;
 
-    Hitter enemy;
+    Hitter h;
     Transform tr;
     SoundEvent s;
 
-    public override void Init(GameObject enemy)
+    public override void Init(Enemy enemy)
     {
-        base.Init(enemy);
-
-        this.enemy = enemy.GetComponent<Hitter>();
+        if (enemy is Hitter) h = enemy as Hitter;
         tr = enemy.transform;
-        s = this.enemy.Sound;
+        s = enemy.Sound;
     }
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,7 +26,7 @@ public class HitJump : State
     {
         s.PlayOneShot("Hit");
 
-        GameObject other = enemy.Hitted;
+        GameObject other = h.Hitted;
 
         if (other.CompareTag("Player"))
         {

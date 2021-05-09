@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
 
         foreach (var smb in Animator.GetBehaviours<State>())
         {
-            smb.Init(this.gameObject);
+            smb.Init(this);
         }
     }
 
