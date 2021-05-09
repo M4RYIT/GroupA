@@ -27,7 +27,8 @@ public class Pendulum : State
         }
         else
         {
-            enemy.GetComponent<Trigger>().OnTrigger += () => { s.PlayOneShot("Hit"); hit = true; m.Animator.SetTrigger("Hit"); };
+            Trigger trg = enemy.GetComponent<Trigger>();
+            trg.OnTrigger += () => { s.PlayOneShot("Hit"); hit = true; m.Animator.SetTrigger("Hit"); trg.Entered = false; };
         }
     }
 

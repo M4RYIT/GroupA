@@ -22,7 +22,7 @@ public class Hit : State
         else
         {
             Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { Other = t.Triggered; };
+            t.OnTrigger += () => { Other = t.Triggered; t.Entered = false; };
             s = t.Sound;
         }
     }

@@ -25,7 +25,7 @@ public class HitEnableDisable : State
         else
         {
             Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { Other = t.Triggered;  t.Animator.SetTrigger("Hit"); };
+            t.OnTrigger += () => { Other = t.Triggered;  t.Animator.SetTrigger("Hit"); t.Entered = false; };
             Enemy = t;
         }
 

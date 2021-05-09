@@ -33,7 +33,8 @@ public class Patrol : State
         }
         else
         {
-            enemy.GetComponent<Trigger>().OnTrigger += () => { Hit(); p.Animator.SetTrigger("Hit"); };
+            Trigger trg = enemy.GetComponent<Trigger>();
+            trg.OnTrigger += () => { Hit(); p.Animator.SetTrigger("Hit"); trg.Entered = false; };
         }
     }
 

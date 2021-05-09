@@ -25,7 +25,7 @@ public class HitParam : State
         else
         {
             Trigger t = enemy.GetComponent<Trigger>();
-            t.OnTrigger += () => { other = t.Triggered; };
+            t.OnTrigger += () => { other = t.Triggered; t.Entered = false; };
             s = t.Sound;
         }
     }
