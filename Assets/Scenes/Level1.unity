@@ -5439,7 +5439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3009782968813688533, guid: 608214bb1bbdcc740953204d25911388, type: 3}
       propertyPath: AngularSpeed
-      value: 3
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 608214bb1bbdcc740953204d25911388, type: 3}
@@ -8556,10 +8556,6 @@ PrefabInstance:
     - target: {fileID: 3009782968813688529, guid: 608214bb1bbdcc740953204d25911388, type: 3}
       propertyPath: m_Name
       value: SpikyBall (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3009782968813688533, guid: 608214bb1bbdcc740953204d25911388, type: 3}
-      propertyPath: Angle
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3009782968845953302, guid: 608214bb1bbdcc740953204d25911388, type: 3}
       propertyPath: m_SortingOrder
