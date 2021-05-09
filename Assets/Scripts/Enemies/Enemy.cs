@@ -25,9 +25,7 @@ public abstract class Enemy : MonoBehaviour
         tr = transform;
         rb = GetComponent<Rigidbody2D>();
         sound = GetComponent<SoundEvent>();
-        startPosition = rb.position;
-
-        GameManager.Instance.OnPlayerDeath += () => gameObject.SetActive(true);
+        startPosition = rb.position;       
     }
 
     private void OnEnable()
@@ -38,6 +36,11 @@ public abstract class Enemy : MonoBehaviour
         {
             smb.Init(this);
         }
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnPlayerDeath += () => gameObject.SetActive(true);
     }
 
     public void Disable()

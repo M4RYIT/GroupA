@@ -6,7 +6,7 @@ public class LockedCameraFollow : MonoBehaviour
     PlayerController pcScript;
     [Range(1, 10)]
     public float smoothFactor;
-    public Vector2 offset;
+    public Vector3 offset;
 
     public bool forwardOnly;
 
@@ -31,27 +31,18 @@ public class LockedCameraFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (target != null && forwardOnly)
-        {
-            Vector3 playerViewportPos = Camera.main.WorldToViewportPoint(target.transform.position + (Vector3)offset);
-            if (playerViewportPos.x > 0.5)
-            {
-                Follow();
-            }
-        }
-        else if(target != null && !forwardOnly)
-        {
-            Follow();
-        }
+        if (target != null) Follow();
     }
-
-
 
     void Follow()
     {
-        Vector3 targetPos = target.transform.position + (Vector3)offset;
+        Vector3 playerViewportPos = Camera.main.WorldToViewportPoint(target.transform.position + (Vector3)offset);
+
+        Vector3 targetPos = (playerViewportPos.x > 0.5 || !forwardOnly)?
+                            target.transform.position+offset:
+                            new Vector3(transform.position.x, target.transform.position.y + offset.y, offset.z);
+        
         Vector3 smoothPosition = Vector3.Lerp(transform.position,targetPos,Time.deltaTime *smoothFactor);
-        smoothPosition.z = -10;
         //transform.position = smoothPosition;
 
         transform.position = new Vector3

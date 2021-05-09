@@ -8,9 +8,9 @@ public class Collectable : MonoBehaviour
     public DrawnObjectType DrawnObjectType;
     public float Amount;
 
-    private void Awake()
+    private void Start()
     {
-        GameManager.Instance.OnPlayerDeath += () => Activate(true);        
+        GameManager.Instance.OnPlayerDeath += () => { Activate(true); };        
     }
 
     public void Collect()

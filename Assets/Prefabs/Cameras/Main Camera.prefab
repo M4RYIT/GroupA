@@ -132,11 +132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothFactor: 5
-  offset: {x: 1, y: 1.5}
+  offset: {x: 1, y: 1.5, z: -10}
   forwardOnly: 1
   leftLimit: -58
   rightLimit: 158
-  bottomLimit: -6.5
+  bottomLimit: -10
   topLimit: 10
 --- !u!114 &3797920987195843197
 MonoBehaviour:
