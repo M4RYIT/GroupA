@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PanelMover : MonoBehaviour
 {
     public Vector3 EndPos;
     public float Duration;
+    public UnityEvent OnEndMove;
 
     Vector3 startPos, endPos;
     Vector3 dif;
@@ -19,7 +21,7 @@ public class PanelMover : MonoBehaviour
     }
 
     public void Move()
-    {
+    {       
         if (!running) MoveInOut();
     }
 
@@ -45,6 +47,7 @@ public class PanelMover : MonoBehaviour
             yield return null;
         }
 
+        if (!reached) OnEndMove?.Invoke();
         running = false;
     }
 

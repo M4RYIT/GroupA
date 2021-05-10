@@ -11,11 +11,13 @@ public abstract class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     protected Transform tr;
     protected SoundEvent sound;
+    protected Action onPlayerDeath;
 
     public Vector2 StartPosition => startPosition;
     public Rigidbody2D Rb => rb;
     public Transform Tr => tr;
     public SoundEvent Sound => sound;
+    public Action OnPlayerDeath { get => onPlayerDeath; set => onPlayerDeath = value; }
 
     Material mat;
 
@@ -40,7 +42,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnPlayerDeath += () => gameObject.SetActive(true);
+        GameManager.Instance.OnPlayerDeath += () => { gameObject.SetActive(true); onPlayerDeath?.Invoke(); };
     }
 
     public void Disable()

@@ -293,18 +293,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1077997336}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 88731788}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -553,6 +541,38 @@ PrefabInstance:
     - target: {fileID: 4122281958690350916, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
       propertyPath: m_text
       value: CONTROLS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 999509748}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
@@ -2629,18 +2649,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1790435276}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1199745327}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -3545,6 +3553,38 @@ PrefabInstance:
       propertyPath: m_text
       value: CREDITS
       objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1077997336}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
 --- !u!224 &1600071695 stripped
@@ -3791,18 +3831,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 999509748}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1669412014}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -4056,6 +4084,38 @@ PrefabInstance:
     - target: {fileID: 4122281958690350916, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
       propertyPath: m_text
       value: OPTIONS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1790435276}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Selectable, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084841374382264284, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}
+      propertyPath: OnEndMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea5b3bfa6bde754da71b5982e15d8fe, type: 3}

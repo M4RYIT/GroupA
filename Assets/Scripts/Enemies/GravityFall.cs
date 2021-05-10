@@ -19,11 +19,12 @@ public class GravityFall : State
         {
             trg = enemy as Trigger;
             trg.OnTrigger += () => { Fall(trg.Animator); };
+            trg.OnPlayerDeath += () => { PosCheck(); };
         }
 
         Hitter h = enemy as Hitter;
         if (h!=null) h.OnHit += () => { h.Animator.SetBool("PosReached", false); rb.gravityScale = 0f; };
-    }
+    }    
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -31,6 +32,14 @@ public class GravityFall : State
         rb.gravityScale = 0f;
         trg.Entered = false;
         trg.TriggerObject.SetActive(true);        
+    }
+
+    void PosCheck()
+    {
+        if (trg.TriggerObject.activeSelf && rb.position!=trg.StartPosition)
+        {
+            Fall(trg.Animator);
+        }
     }
 
     void Fall(Animator anim)

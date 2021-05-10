@@ -31,6 +31,7 @@ public class GravityRise : State
 
     void Stop(Animator anim)
     {
+        rb.position = start;
         anim.SetBool("PosReached", true);
     }
 
