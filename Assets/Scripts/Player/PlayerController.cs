@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]bool isGrounded;
     private Vector3 respawnPoint;
     SoundEvent sound;
+    bool hasJumped;
 
 
     private void Awake()
@@ -52,9 +53,10 @@ public class PlayerController : MonoBehaviour
 
 
         //IMPUT OUT OF THE FUNCTION FOR THE "BOUNCE" ON MUSHO
-        if (Input.GetKeyDown(jumpButton) && isGrounded && !dead)
+        if (Input.GetKeyDown(jumpButton) && isGrounded && !dead && !hasJumped)
         {
             Jump();
+            hasJumped = true;
         }
 
         anim.SetBool("IsJumping", !(isGrounded | dead));        
@@ -67,6 +69,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             runDustGO.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(jumpButton))
+        {
+            hasJumped = false;
         }
         
         

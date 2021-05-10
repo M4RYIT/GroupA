@@ -237,14 +237,14 @@ MonoBehaviour:
   jumpForce: 8.5
   fallingSpeedMultiplier: 2.6
   groundCheck: {fileID: 4673689794286355417}
-  checkRadius: 0.4
+  checkRadius: 0.3
   GroundLM:
     serializedVersion: 2
     m_Bits: 64
   BottomLimitLM:
     serializedVersion: 2
-    m_Bits: 0
-  jumpButton: 32
+    m_Bits: 128
+  jumpButton: 119
   dead: 0
   isGrounded: 0
 --- !u!95 &4673689795471498520
