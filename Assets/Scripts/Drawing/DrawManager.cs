@@ -29,6 +29,8 @@ public class DrawManager : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnCollect += SetDrawBar;
+        GameManager.Instance.OnPlayerDeath += DestroyDrawnObjects;
+        GameManager.Instance.OnPlayerDeath += RestoreBars;
 
         Init();
     }
@@ -43,7 +45,7 @@ public class DrawManager : MonoBehaviour
     public DrawnObject DrawnObject(Vector2 pos)
     {
         DrawRef drawRef = drawRefs[index];
-        DrawnObject drawnObj = Instantiate(drawRef.Asset.Prefab, pos, Quaternion.identity).GetComponent<DrawnObject>();
+        DrawnObject drawnObj = Instantiate(drawRef.Asset.Prefab, pos, Quaternion.identity, transform).GetComponent<DrawnObject>();
         drawnObj.Init(drawRef.Asset.Color, drawRef.Asset.ObjDuration);
         return drawnObj;
     }
@@ -62,6 +64,23 @@ public class DrawManager : MonoBehaviour
         index = (index + 1) % drawRefs.Count;
 
         drawRefs[index].DrawBar.Select();
+    }
+
+    void DestroyDrawnObjects()
+    {
+        DrawnObject[] objs = GetComponentsInChildren<DrawnObject>();        
+        for (int i = objs.Length - 1; i>=0; i--)
+        {
+            Destroy(objs[i].gameObject);
+        }
+    }
+
+    void RestoreBars()
+    {
+        foreach (var r in drawRefs.Values)
+        {
+            r.Reset();
+        }
     }
 
     void Init()
@@ -91,6 +110,12 @@ public class DrawManager : MonoBehaviour
             Asset = asset;
             DrawBar = bar;
             CurrentDrawTime = asset.DrawBarDuration;
+        }
+
+        public void Reset()
+        {
+            CurrentDrawTime = MaxDrawTime;
+            DrawBar.Set(CurrentDrawTime);
         }
     }
 }
