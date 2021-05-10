@@ -16,4 +16,4 @@ MonoBehaviour:
   Prefab: {fileID: 2389462195334032253, guid: 3f8cf444dd1c89041a191bb4b461a953, type: 3}
   Color: {r: 0.79607844, g: 0.1882353, b: 0.34509805, a: 1}
   ObjDuration: 2
-  DrawBarDuration: 5
+  DrawBarDuration: 3
