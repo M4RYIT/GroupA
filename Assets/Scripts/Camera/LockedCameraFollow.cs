@@ -17,9 +17,9 @@ public class LockedCameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.OnPlayerDeath += () => { forwardOnly = false; };
         target = GameObject.FindGameObjectWithTag("Player");
         pcScript = target.GetComponent<PlayerController>();
+        GameManager.Instance.OnPlayerDeath += () => { forwardOnly = false; };
         Follow();
     }
 

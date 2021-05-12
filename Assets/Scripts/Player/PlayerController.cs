@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]bool isGrounded;
     private Vector3 respawnPoint;
     SoundEvent sound;
+    SidedCamera sidedCam;
     bool hasJumped;
 
 
@@ -32,7 +33,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sound = GetComponent<SoundEvent>();
+        sidedCam = GetComponent<SidedCamera>();
         respawnPoint = transform.position;
+
         dead = false;
     }
 
@@ -130,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        sidedCam.enabled = false;
         sound.PlayOneShot("Hit");
         sound.PlayOneShot("Defeat");
         anim.SetTrigger("Disappear");
@@ -141,6 +145,7 @@ public class PlayerController : MonoBehaviour
         transform.position = respawnPoint;
         anim.SetTrigger("Appear");
         yield return new WaitForSeconds(0.45f);
+        sidedCam.enabled = true;
         dead = false;
     }
 }

@@ -38,6 +38,11 @@ public class MenuUtility : MonoBehaviour
         StartCoroutine(LoadSceneAsync(nm: name));
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     IEnumerator LoadSceneAsync(string nm="", int i=0)
     {
         AsyncOperation op = string.IsNullOrEmpty(nm) ? SceneManager.LoadSceneAsync(i) : SceneManager.LoadSceneAsync(nm);
