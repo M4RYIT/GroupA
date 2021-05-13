@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         moveInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, GroundLM);
 
-        if(Physics2D.OverlapCircle(groundCheck.position, checkRadius, BottomLimitLM))
+        if(Physics2D.OverlapCircle(groundCheck.position, checkRadius, BottomLimitLM) && !dead)
         {
             GameManager.Instance.OnPlayerDeath?.Invoke();
         }
